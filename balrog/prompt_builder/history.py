@@ -85,7 +85,8 @@ class HistoryPromptBuilder:
         messages = []
 
         if self.system_prompt and not icl_episodes:
-            messages.append(Message(role="user", content=self.system_prompt))
+            #messages.append(Message(role="user", content=self.system_prompt))
+            messages.append(Message(role="system", content=self.system_prompt))
 
         # Determine which text observations to include
         text_needed = self.max_text_history
@@ -145,7 +146,7 @@ class HistoryPromptBuilder:
                         del event[flag]
             elif event["type"] == "action":
                 if event.get("reasoning") is not None:
-                    content = "Previous plan:\n" + event["reasoning"]
+                    content = "My Reasoning and Action:\n" + event["reasoning"]
                 else:
                     content = event["action"]
                 message = Message(role="assistant", content=content)

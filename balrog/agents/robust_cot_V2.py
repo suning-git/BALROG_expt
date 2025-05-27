@@ -9,7 +9,7 @@ from balrog.agents.base import BaseAgent
 from balrog.client import LLMClientWrapper
 
 
-class RobustCoTAgent(BaseAgent):
+class RobustCoTAgentV2(BaseAgent):
     """An agent that performs actions using a chain-of-thought reasoning process."""
 
     def __init__(self, client_factory: LLMClientWrapper, prompt_builder, config):
@@ -45,7 +45,8 @@ class RobustCoTAgent(BaseAgent):
 
         # Updated instructions: chain of thought + strict output format
         cot_instructions = """
-First, think about the best course of action.
+First, think step by step, but be concise in your reasoning. Focus on the most important factors and avoid unnecessary details.
+Keep your thinking under 400 words.
 Then, you must choose exactly one of the listed actions and output it strictly in the following format:
 
 <|ACTION|>YOUR_CHOSEN_ACTION<|END|>

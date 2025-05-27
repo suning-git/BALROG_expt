@@ -1,6 +1,7 @@
 agent: 
   type: naive            # Type of agent to use (e.g., 'naive', 'cot', etc.)
   remember_cot: True     # Whether the agent should remember its reasoning across turns
+  use_cot: False         # Whether to use chain-of-thought reasoning
   max_text_history: 16   # Maximum number of text messages to keep in the history
   max_image_history: 0   # Maximum number of images to keep in the history
   max_cot_history: 1     # Maximum number of chain-of-thought steps to keep in history (if using 'cot' type of agent)
@@ -17,7 +18,7 @@ eval:
     babyai: 10           # Number of episodes for each 'babyai' task
     crafter: 10          # Number of episodes for the 'crafter' environment
     babaisai: 3          # Number of episodes for each 'babaisai' task
-    textworld: 10        # Number of episodes for each 'textworld' task
+    textworld: 1        # Number of episodes for each 'textworld' task
   max_steps_per_episode: null   # Max steps per episode; null uses the environment default
   save_trajectories: True       # Whether to save agent trajectories (text only)
   save_images: False            # Whether to save images from the environment
@@ -27,18 +28,20 @@ eval:
 
 client:
   client_name: openai           # LLM client to use (e.g., 'openai', 'gemini', 'claude')
-  model_id: gpt-4o              # Model identifier (e.g., 'gpt-4', 'gpt-3.5-turbo')
+#  model_id: gpt-4o              # Model identifier (e.g., 'gpt-4', 'gpt-3.5-turbo')
+  model_id: deepseek-reasoner              # Model identifier (e.g., 'gpt-4', 'gpt-3.5-turbo')
   base_url: http://localhost:8080/v1   # Base URL for the API (if using a local server)
   generate_kwargs:
-    temperature: 1.0            # Sampling temperature. If null the API default temperature is used instead
-    max_tokens: 4096            # Max tokens to generate in the response
+    temperature: 1            # Sampling temperature. If null the API default temperature is used instead
+    max_tokens: 100000 #32768 #4096            # Max tokens to generate in the response
   timeout: 60                   # Timeout for API requests in seconds
   max_retries: 5                # Max number of retries for failed API calls
   delay: 2                      # Exponential backoff factor between retries in seconds
   alternate_roles: False        # Whether the client requires alternating between the agent and the environment
 
-envs:
-  names: babyai-babaisai-textworld-crafter-nle-minihack   # Environments to evaluate, separated by hyphens
+envs: 
+#  names: babyai-babaisai-textworld-crafter-nle-minihack   # Environments to evaluate, separated by hyphens
+  names: textworld   # Environments to evaluate, separated by hyphens
   env_kwargs:
     seed: null                # Random seed; null means a random seed is used
   nle_kwargs:
@@ -103,8 +106,8 @@ tasks:
     - "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to"
 
   textworld_tasks:
-    - "treasure_hunter"
-    - "the_cooking_game"
+#    - "treasure_hunter"
+#    - "the_cooking_game"
     - "coin_collector"
 
   babaisai_tasks:

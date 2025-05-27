@@ -286,7 +286,7 @@ class Evaluator:
         # Open the CSV file and write the header
         with open(csv_filename, mode="w", newline="", encoding="utf-8") as csv_file:
             csv_writer = csv.writer(csv_file, escapechar="˘", quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow(["Step", "Action", "Reasoning", "Observation", "Reward", "Done"])
+            csv_writer.writerow(["Step", "Action", "Reasoning", "Observation", "Reward", "Done", "Message"])
 
             # If the agent is an FewShotAgent, load the in-context learning episode
             if isinstance(agent, FewShotAgent):
@@ -306,7 +306,8 @@ class Evaluator:
 
             action = None
             for step in range(max_steps_per_episode):
-                response = agent.act(obs, prev_action=action)
+                # response = agent.act(obs, prev_action=action)
+                response, messages = agent.act(obs, prev_action=action)
                 action = env.check_action_validity(response.completion)
                 reasoning = response.reasoning if hasattr(response, "reasoning") else ""
 
@@ -327,6 +328,9 @@ class Evaluator:
                     else obs["text"]["long_term_context"]
                 )
                 action = response.completion
+
+                messages_dict = {"messages" : [{"role": m.role, "content": m.content} for m in messages]}
+
                 # Write the step data to the CSV file
                 csv_writer.writerow(
                     [
@@ -336,6 +340,8 @@ class Evaluator:
                         obs["text"]["long_term_context"],
                         reward,
                         done,
+                        #messages_dict
+                        "NA"
                     ]
                 )
 
@@ -370,6 +376,7 @@ class Evaluator:
             episode_log["seed"] = seed
             episode_log["agent"] = OmegaConf.to_container(self.config.agent, resolve=True)
             episode_log["client"] = OmegaConf.to_container(self.config.client, resolve=True)
+            episode_log["env_id"] = env.env_id if hasattr(env, "env_id") else None
 
             # Save the episode_log to a JSON file
             json_filename = os.path.join(

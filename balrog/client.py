@@ -83,11 +83,15 @@ class LLMClientWrapper:
         retries = 0
         while retries < self.max_retries:
             try:
+                logger.info(f"Attempting {func.__name__} (attempt {retries + 1}/{self.max_retries})")
                 return func(*args, **kwargs)
             except Exception as e:
                 retries += 1
                 logger.error(f"Retryable error during {func.__name__}: {e}. Retry {retries}/{self.max_retries}")
+                logger.error(f"Error type: {type(e).__name__}")
+                logger.error(f"Error details: {str(e)}")
                 sleep_time = self.delay * (2 ** (retries - 1))  # Exponential backoff
+                logger.info(f"Waiting {sleep_time} seconds before next retry")
                 time.sleep(sleep_time)
         raise Exception(f"Failed to execute {func.__name__} after {self.max_retries} retries.")
 
@@ -130,6 +134,16 @@ def process_image_claude(image):
     }
 
 
+def flatten_messages(messages):
+    flat = []
+    for m in messages:
+        new_msg = m.copy()
+        content = m.get("content")
+        if isinstance(content, list):
+            new_msg["content"] = "".join(part.get("text", "") for part in content if part.get("type") == "text")
+        flat.append(new_msg)
+    return flat
+
 class OpenAIWrapper(LLMClientWrapper):
     """Wrapper for interacting with the OpenAI API."""
 
@@ -145,6 +159,7 @@ class OpenAIWrapper(LLMClientWrapper):
     def _initialize_client(self):
         """Initialize the OpenAI client if not already initialized."""
         if not self._initialized:
+            logger.info(f"Initializing OpenAI client with base_url: {self.base_url}")
             if self.client_name.lower() == "vllm":
                 self.client = OpenAI(api_key="EMPTY", base_url=self.base_url)
             elif self.client_name.lower() == "nvidia" or self.client_name.lower() == "xai":
@@ -153,7 +168,10 @@ class OpenAIWrapper(LLMClientWrapper):
                 self.client = OpenAI(base_url=self.base_url)
             elif self.client_name.lower() == "openai":
                 # For OpenAI, always use the standard API regardless of base_url
-                self.client = OpenAI()
+                api_key = os.getenv("OPENAI_API_KEY")
+                logger.info(f"OpenAI API Key present: {'Yes' if api_key else 'No'}")
+                logger.info(f"API Key length: {len(api_key) if api_key else 0}")
+                self.client = OpenAI(base_url=self.base_url, api_key=api_key)
             self._initialized = True
 
     def convert_messages(self, messages):
@@ -165,6 +183,10 @@ class OpenAIWrapper(LLMClientWrapper):
         Returns:
             list: A list of messages formatted for the OpenAI API.
         """
+
+        #logger.info(f"----------- Debug convert_messages BEGIN -----------")
+        #logger.info(f"all messages : {messages}")
+        
         converted_messages = []
         for msg in messages:
             new_content = [{"type": "text", "text": msg.content}]
@@ -174,6 +196,17 @@ class OpenAIWrapper(LLMClientWrapper):
                 converted_messages[-1]["content"].extend(new_content)
             else:
                 converted_messages.append({"role": msg.role, "content": new_content})
+
+            #logger.info(f"alternate_roles : {self.alternate_roles}, msg.role : {msg.role}")
+            #logger.info(f"current msg : {msg}")
+            #logger.info(f"converted_messages[-1] : {converted_messages[-1]}")
+
+        #logger.info(f"----------- Debug convert_messages END -----------")
+
+        # Only flatten messages for DeepSeek models
+        if "deepseek" in self.model_id.lower():
+            converted_messages = flatten_messages(converted_messages)
+            
         return converted_messages
 
     def generate(self, messages):
@@ -187,13 +220,15 @@ class OpenAIWrapper(LLMClientWrapper):
         """
         self._initialize_client()
         converted_messages = self.convert_messages(messages)
+        logger.info(f"Making API call to model: {self.model_id}")
+        logger.info(f"Number of messages: {len(converted_messages)}")
 
         def api_call():
             # Create kwargs for the API call
             api_kwargs = {
                 "messages": converted_messages,
                 "model": self.model_id,
-                "max_tokens": self.client_kwargs.get("max_tokens", 1024),
+                #"max_tokens": self.client_kwargs.get("max_tokens", 1024),
             }
 
             # Only include temperature if it's not None
@@ -201,18 +236,31 @@ class OpenAIWrapper(LLMClientWrapper):
             if temperature is not None:
                 api_kwargs["temperature"] = temperature
 
-            return self.client.chat.completions.create(**api_kwargs)
+            logger.info(f"API call parameters: {json.dumps(api_kwargs, indent=2)}")
 
-        response = self.execute_with_retries(api_call)
+            try:
+                response = self.client.chat.completions.create(**api_kwargs)
+                logger.info(f"API call successful. response = {response}")
+                return response
+            except Exception as e:
+                logger.error(f"API call failed with error: {str(e)}")
+                logger.error(f"Error type: {type(e).__name__}")
+                raise
 
-        return LLMResponse(
-            model_id=self.model_id,
-            completion=response.choices[0].message.content.strip(),
-            stop_reason=response.choices[0].finish_reason,
-            input_tokens=response.usage.prompt_tokens,
-            output_tokens=response.usage.completion_tokens,
-            reasoning=None,
-        )
+        try:
+            response = self.execute_with_retries(api_call)
+            logger.info("Successfully got response from API")
+            return LLMResponse(
+                model_id=self.model_id,
+                completion=response.choices[0].message.content.strip(),
+                stop_reason=response.choices[0].finish_reason,
+                input_tokens=response.usage.prompt_tokens,
+                output_tokens=response.usage.completion_tokens,
+                reasoning=None,
+            )
+        except Exception as e:
+            logger.error(f"Failed to get response after retries: {str(e)}")
+            raise         
 
 
 class GoogleGenerativeAIWrapper(LLMClientWrapper):

@@ -1,6 +1,7 @@
 import glob
 import importlib.resources
 import os
+import logging
 from collections import defaultdict
 from pathlib import Path
 
@@ -9,6 +10,7 @@ import textworld
 import textworld.gym
 
 workspace_dir = os.path.dirname(importlib.resources.files("balrog").__str__())
+logger = logging.getLogger(__name__)
 
 
 class TextWorldFactory:
@@ -28,6 +30,7 @@ class TextWorldFactory:
         return cls._instance
 
     def initialize(self, textworld_games_path, tasks, max_episode_steps=40, **kwargs):
+        
         self.max_steps = max_episode_steps
 
         textworld_games_path = os.path.join(workspace_dir, textworld_games_path)
@@ -46,6 +49,7 @@ class TextWorldFactory:
                 if task in tasks:
                     env_id = textworld.gym.register_game(entry, self.request_infos, max_episode_steps=max_episode_steps)
                     self.env_ids[task].append(env_id)
+                    print(f"Loading game {len(self.env_ids[task])-1}: {entry}")
 
     def get_textworld_env(self, task, seed=None, **kwargs):
         """
@@ -71,6 +75,8 @@ class TextWorldFactory:
         else:
             self.count[task] += 1
             env_id = self.env_ids[task][self.count[task] % len(self.env_ids[task])]
+
+        print(f"env_id={env_id}, task={task}, seed={seed}, count[task]={self.count[task]}")
 
         env = textworld.gym.make(env_id, **kwargs)
         env = TextWorldWrapper(env, max_steps=self.max_steps)

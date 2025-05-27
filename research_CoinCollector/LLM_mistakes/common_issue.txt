@@ -1,0 +1,5 @@
+
+Before 5/25/2025:
+
+Using prompt V4, I thought it might hit context windows limit, but I double checked this is not the case. In fact, in client.py, the limit is marked out.
+
