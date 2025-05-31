@@ -1,0 +1,653 @@
+Step,Room,Action,Result,Reasoning
+0,Bathroom,write_memory(Playbook),"Playbook:
+- Overall Strategy: Use a DFS algorithm to explore the maze until reaching the kitchen, where the coin is located. Only 'take coin' when an observation explicitly mentions the coin.
+- Key Memory reads: 
+   * 'Playbook' - to load the current strategy.
+   * 'Notes' - to check any additional instructions or hints.
+   * 'Visited' - list of visited rooms (to be maintained) to avoid re-visiting.
+   * 'Stack' - DFS stack for rooms/directions to explore.
+- Key Memory writes:
+   * 'Playbook' - updated in every round if needed.
+   * 'Notes' - additional notes for future rounds.
+   * 'Visited' - updated with the current room after moving.
+   * 'Stack' - updated with potential moves/directions.
+- Initial Step: We're in the bathroom with multiple unguarded exits. The coin is in the kitchen. Decide on an order for exploration (e.g., east, north, west, then south if applicable) and mark visited.
+- In each round: Read 'Playbook' and 'Notes', update visited rooms, and choose a move based on DFS.
+
+Future Self: This playbook is our operating procedure for exploring the maze and collecting the coin in the kitchen. Stick to DFS, and only pick up the coin when explicitly observed. Review this plan each round.",
+0,Bathroom,write_memory(Notes),"Initial Notes:
+- Currently in the Bathroom with exits: east, north, and west.
+- Plan: Follow DFS. Start by exploring east as our first move in search of the kitchen containing the coin.
+- Add this room to 'Visited' list when appropriate.",
+1,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+",
+2,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+3,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+4,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+5,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+6,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+7,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+8,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+9,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+10,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+11,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+12,Silent Studio,game_action(go north),"
+-= Pantry =-
+You are in a pantry. An usual one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+",
+13,Pantry,game_action(go south),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+14,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+15,Austere Workshop,game_action(go north),"
+-= Cramped Bathroom =-
+You arrive in a bathroom. A cramped kind of place.
+
+
+
+There is an exit to the south. Don't worry, it is unblocked.
+
+",
+16,Cramped Bathroom,game_action(go south),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+17,Austere Workshop,game_action(go south),"
+-= Sweaty Scullery =-
+You are in a scullery. A sweaty kind of place.
+
+
+
+There is an unguarded exit to the north.
+
+",
+18,Sweaty Scullery,game_action(go north),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+19,Austere Workshop,game_action(go west),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+20,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+21,Austere Workshop,game_action(go north),"
+-= Cramped Bathroom =-
+You arrive in a bathroom. A cramped kind of place.
+
+
+
+There is an exit to the south. Don't worry, it is unblocked.
+
+",
+22,Cramped Bathroom,game_action(go north),"You can't go that way.
+
+",
+23,Cramped Bathroom,game_action(go south),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+24,Austere Workshop,game_action(go south),"
+-= Sweaty Scullery =-
+You are in a scullery. A sweaty kind of place.
+
+
+
+There is an unguarded exit to the north.
+
+",
+25,Sweaty Scullery,game_action(go north),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+26,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+27,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+28,Cellar,game_action(go north),"You can't go that way.
+
+",
+29,Cellar,game_action(go north),"You can't go that way.
+
+",
+30,Cellar,game_action(go north),"You can't go that way.
+
+",
+31,Cellar,game_action(go north),"You can't go that way.
+
+",
+32,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+33,Silent Studio,game_action(go north),"
+-= Pantry =-
+You are in a pantry. An usual one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+",
+34,Pantry,game_action(go south),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+35,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+36,Fun Recreation Zone,game_action(go east),"
+-= Super Hot Kitchenette =-
+You're now in a super hot kitchenette. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an unblocked exit to the west.
+
+",
+37,Super Hot Kitchenette,game_action(take coin),"You can't see any such thing.
+",
+38,Super Hot Kitchenette,game_action(go west),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+39,Fun Recreation Zone,game_action(go north),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+40,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+41,Fun Recreation Zone,game_action(go west),"
+-= Upsettingly Hot Kitchen =-
+You're now in an upsettingly hot kitchen.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded.
+
+",
+42,Upsettingly Hot Kitchen,game_action(take coin),"You can't see any such thing.
+",
+43,Upsettingly Hot Kitchen,game_action(go east),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+44,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+45,Hot Kitchen,game_action(go east),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+46,Vault,game_action(go west),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+47,Hot Kitchen,game_action(go north),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+48,Fun Recreation Zone,game_action(go east),"
+-= Super Hot Kitchenette =-
+You're now in a super hot kitchenette. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an unblocked exit to the west.
+
+",
+49,Super Hot Kitchenette,game_action(go west),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+50,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+51,Hot Kitchen,game_action(go west),"
+-= Sauna =-
+You've just shown up in a sauna.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded.
+
+",
+52,Sauna,game_action(go east),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+53,Hot Kitchen,game_action(take coin),"You can't see any such thing.
+",
+54,Hot Kitchen,game_action(go north),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+55,Fun Recreation Zone,game_action(go north),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+56,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+57,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+58,Hot Kitchen,game_action(go north),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+59,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+60,Hot Kitchen,game_action(go north),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+61,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+62,Hot Kitchen,game_action(go south),"
+-= Serious Workshop =-
+You've just sauntered into a serious workshop. Let's see what's in here.
+
+
+
+There is an unblocked exit to the north.
+
+",
+63,Serious Workshop,game_action(go north),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+64,Hot Kitchen,game_action(go south),"
+-= Serious Workshop =-
+You've just sauntered into a serious workshop. Let's see what's in here.
+
+
+
+There is an unblocked exit to the north.
+
+",
+65,Serious Workshop,game_action(go north),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+66,Hot Kitchen,game_action(go east),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+67,Vault,game_action(go north),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty kind of place. The room is well lit.
+
+
+
+You don't like doors? Why not try going south, that entranceway is unguarded.
+
+",
+68,Sweaty Cookery,game_action(go south),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+69,Vault,game_action(go north),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty kind of place. The room is well lit.
+
+
+
+You don't like doors? Why not try going south, that entranceway is unguarded.
+
+",
+70,Sweaty Cookery,game_action(go south),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+71,Vault,game_action(go west),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+72,Hot Kitchen,game_action(go south),"
+-= Serious Workshop =-
+You've just sauntered into a serious workshop. Let's see what's in here.
+
+
+
+There is an unblocked exit to the north.
+
+",
+73,Serious Workshop,game_action(go east),"You can't go that way.
+
+",
+74,Serious Workshop,game_action(go east),"You can't go that way.
+
+",
+75,Serious Workshop,game_action(go west),"You can't go that way.
+
+",
+76,Serious Workshop,game_action(go east),"You can't go that way.
+
+",
+77,Serious Workshop,game_action(go east),"You can't go that way.
+
+",
+78,Serious Workshop,game_action(go north),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+79,Hot Kitchen,game_action(take coin),"You can't see any such thing.
+",
+80,Hot Kitchen,game_action(go south),"
+-= Serious Workshop =-
+You've just sauntered into a serious workshop. Let's see what's in here.
+
+
+
+There is an unblocked exit to the north.
+
+",

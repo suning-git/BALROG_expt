@@ -1,0 +1,754 @@
+Step,Room,Action,Result,Reasoning
+0,Bathroom,write_memory(Playbook),"1. **Memory Keys and Usage**:
+   - 'Current_Location': Track the current room (e.g., 'Bathroom', 'Kitchen').
+   - 'Exits': Store available exits from the current room (e.g., 'north', 'east', 'west').
+   - 'Coin_Status': Track whether the coin has been collected ('Collected' or 'Not Collected').
+   - 'Path_Taken': Log the sequence of moves to backtrack if needed.
+
+2. **Round-by-Round Plan**:
+   - **Round 1**: Read 'Current_Location' and 'Exits' to understand the environment. Write 'Bathroom' to 'Current_Location' and ['north', 'east', 'west'] to 'Exits'.
+   - **Round 2**: Choose an exit (e.g., 'east') to move towards the kitchen. Update 'Path_Taken' with the chosen direction.
+   - **Round 3**: Upon entering the kitchen, check for the coin. If present, 'take coin' and update 'Coin_Status' to 'Collected'.
+   - **Round 4**: If the coin is not in the kitchen, backtrack using 'Path_Taken' and explore other exits.
+
+3. **Notes**:
+   - Always verify the presence of the coin before attempting to 'take coin'.
+   - Avoid revisiting rooms unless necessary to prevent loops.",
+0,Bathroom,write_memory(Notes),"Initial observation: Currently in the Bathroom with exits to the north, east, and west. The goal is to reach the kitchen to collect the coin. Prioritize moving east as it might lead to the kitchen.",
+1,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+",
+1,Sweaty Canteen,write_memory(Current_Location),Sweaty Canteen,
+1,Sweaty Canteen,write_memory(Exits),west,
+1,Sweaty Canteen,write_memory(Path_Taken),east,
+1,Sweaty Canteen,read_memory(Playbook),"1. **Memory Keys and Usage**:
+   - 'Current_Location': Track the current room (e.g., 'Bathroom', 'Kitchen').
+   - 'Exits': Store available exits from the current room (e.g., 'north', 'east', 'west').
+   - 'Coin_Status': Track whether the coin has been collected ('Collected' or 'Not Collected').
+   - 'Path_Taken': Log the sequence of moves to backtrack if needed.
+
+2. **Round-by-Round Plan**:
+   - **Round 1**: Read 'Current_Location' and 'Exits' to understand the environment. Write 'Bathroom' to 'Current_Location' and ['north', 'east', 'west'] to 'Exits'.
+   - **Round 2**: Choose an exit (e.g., 'east') to move towards the kitchen. Update 'Path_Taken' with the chosen direction.
+   - **Round 3**: Upon entering the kitchen, check for the coin. If present, 'take coin' and update 'Coin_Status' to 'Collected'.
+   - **Round 4**: If the coin is not in the kitchen, backtrack using 'Path_Taken' and explore other exits.
+
+3. **Notes**:
+   - Always verify the presence of the coin before attempting to 'take coin'.
+   - Avoid revisiting rooms unless necessary to prevent loops.",
+2,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+2,Bathroom,write_memory(Current_Location),Bathroom,
+2,Bathroom,write_memory(Exits),"east, north, west",
+2,Bathroom,read_memory(Path_Taken),east,
+2,Bathroom,write_memory(Path_Taken),"east, west",
+3,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+3,Salon,write_memory(Current_Location),Salon,
+3,Salon,write_memory(Exits),"east, north, south, west",
+3,Salon,write_memory(Path_Taken),"east, west, north",
+4,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+4,Cozy Chamber,write_memory(Current_Location),Cozy Chamber,
+4,Cozy Chamber,write_memory(Exits),west,
+4,Cozy Chamber,write_memory(Path_Taken),"east, west, north, east",
+5,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+5,Salon,write_memory(Current_Location),Salon,
+5,Salon,write_memory(Exits),"east, north, south, west",
+5,Salon,write_memory(Path_Taken),"east, west, north, east, west",
+6,Salon,game_action(go south),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+6,Bathroom,write_memory(Current_Location),Bathroom,
+6,Bathroom,write_memory(Exits),"east, north, west",
+6,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south",
+7,Bathroom,game_action(go west),"
+-= Washroom =-
+You find yourself in a washroom. A typical one.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked.
+
+",
+7,Washroom,write_memory(Current_Location),Washroom,
+7,Washroom,write_memory(Exits),east,
+7,Washroom,write_memory(Path_Taken),"east, west, north, east, west, south, west",
+8,Washroom,game_action(go east),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+8,Bathroom,write_memory(Current_Location),Bathroom,
+8,Bathroom,write_memory(Exits),"east, north, west",
+8,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east",
+8,Bathroom,read_memory(Playbook),"1. **Memory Keys and Usage**:
+   - 'Current_Location': Track the current room (e.g., 'Bathroom', 'Kitchen').
+   - 'Exits': Store available exits from the current room (e.g., 'north', 'east', 'west').
+   - 'Coin_Status': Track whether the coin has been collected ('Collected' or 'Not Collected').
+   - 'Path_Taken': Log the sequence of moves to backtrack if needed.
+
+2. **Round-by-Round Plan**:
+   - **Round 1**: Read 'Current_Location' and 'Exits' to understand the environment. Write 'Bathroom' to 'Current_Location' and ['north', 'east', 'west'] to 'Exits'.
+   - **Round 2**: Choose an exit (e.g., 'east') to move towards the kitchen. Update 'Path_Taken' with the chosen direction.
+   - **Round 3**: Upon entering the kitchen, check for the coin. If present, 'take coin' and update 'Coin_Status' to 'Collected'.
+   - **Round 4**: If the coin is not in the kitchen, backtrack using 'Path_Taken' and explore other exits.
+
+3. **Notes**:
+   - Always verify the presence of the coin before attempting to 'take coin'.
+   - Avoid revisiting rooms unless necessary to prevent loops.",
+8,Bathroom,write_memory(Notes),"Current exploration seems to be looping between Bathroom, Sweaty Canteen, Salon, and Washroom. Need to find an alternative path to reach the kitchen. Perhaps try 'north' from the Bathroom again or explore other exits.",
+9,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+9,Salon,write_memory(Current_Location),Salon,
+9,Salon,write_memory(Exits),"east, north, south, west",
+9,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north",
+10,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+10,Cozy Chamber,write_memory(Current_Location),Cozy Chamber,
+10,Cozy Chamber,write_memory(Exits),west,
+10,Cozy Chamber,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east",
+11,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+11,Salon,write_memory(Current_Location),Salon,
+11,Salon,write_memory(Exits),"east, north, south, west",
+11,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west",
+12,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+12,Workshop,write_memory(Current_Location),Workshop,
+12,Workshop,write_memory(Exits),"east, north, south, west",
+12,Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north",
+13,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+13,Playroom,write_memory(Current_Location),Playroom,
+13,Playroom,write_memory(Exits),"east, north, south, west",
+13,Playroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east",
+14,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+14,Austere Workshop,write_memory(Current_Location),Austere Workshop,
+14,Austere Workshop,write_memory(Exits),"east, north, south, west",
+14,Austere Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east",
+15,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+15,Silent Studio,write_memory(Current_Location),Silent Studio,
+15,Silent Studio,write_memory(Exits),"east, north, south, west",
+15,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east",
+16,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+16,Cellar,write_memory(Current_Location),Cellar,
+16,Cellar,write_memory(Exits),west,
+16,Cellar,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east",
+17,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+17,Silent Studio,write_memory(Current_Location),Silent Studio,
+17,Silent Studio,write_memory(Exits),"east, north, south, west",
+17,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west",
+18,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+18,Fun Recreation Zone,write_memory(Current_Location),Fun Recreation Zone,
+18,Fun Recreation Zone,write_memory(Exits),"east, north, south, west",
+18,Fun Recreation Zone,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south",
+19,Fun Recreation Zone,game_action(go east),"
+-= Super Hot Kitchenette =-
+You're now in a super hot kitchenette. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an unblocked exit to the west.
+
+",
+19,Super Hot Kitchenette,write_memory(Current_Location),Super Hot Kitchenette,
+19,Super Hot Kitchenette,write_memory(Exits),west,
+19,Super Hot Kitchenette,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east",
+20,Super Hot Kitchenette,game_action(take coin),"You can't see any such thing.
+",
+20,Super Hot Kitchenette,write_memory(Notes),The coin is not in the Super Hot Kitchenette. Need to backtrack and explore other paths.,
+21,Super Hot Kitchenette,game_action(go west),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+21,Fun Recreation Zone,write_memory(Current_Location),Fun Recreation Zone,
+21,Fun Recreation Zone,write_memory(Exits),"east, north, south, west",
+21,Fun Recreation Zone,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west",
+22,Fun Recreation Zone,game_action(go north),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+22,Silent Studio,write_memory(Current_Location),Silent Studio,
+22,Silent Studio,write_memory(Exits),"east, north, south, west",
+22,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north",
+23,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+23,Austere Workshop,write_memory(Current_Location),Austere Workshop,
+23,Austere Workshop,write_memory(Exits),"east, north, south, west",
+23,Austere Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west",
+24,Austere Workshop,game_action(go west),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+24,Playroom,write_memory(Current_Location),Playroom,
+24,Playroom,write_memory(Exits),"east, north, south, west",
+24,Playroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west",
+25,Playroom,game_action(go west),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+25,Workshop,write_memory(Current_Location),Workshop,
+25,Workshop,write_memory(Exits),"east, north, south, west",
+25,Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west",
+26,Workshop,game_action(go south),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+26,Salon,write_memory(Current_Location),Salon,
+26,Salon,write_memory(Exits),"east, north, south, west",
+26,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south",
+27,Salon,game_action(go south),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+27,Bathroom,write_memory(Current_Location),Bathroom,
+27,Bathroom,write_memory(Exits),"east, north, west",
+27,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south",
+27,Bathroom,write_memory(Notes),The exploration seems to be looping between rooms. The coin is not in the Super Hot Kitchenette. Need to explore other paths or revisit the kitchenette with a different approach.,
+28,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+",
+28,Sweaty Canteen,write_memory(Current_Location),Sweaty Canteen,
+28,Sweaty Canteen,write_memory(Exits),west,
+28,Sweaty Canteen,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east",
+29,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+29,Bathroom,write_memory(Current_Location),Bathroom,
+29,Bathroom,write_memory(Exits),"east, north, west",
+29,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west",
+30,Bathroom,game_action(go west),"
+-= Washroom =-
+You find yourself in a washroom. A typical one.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked.
+
+",
+30,Washroom,write_memory(Current_Location),Washroom,
+30,Washroom,write_memory(Exits),east,
+30,Washroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west",
+31,Washroom,game_action(go east),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+31,Bathroom,write_memory(Current_Location),Bathroom,
+31,Bathroom,write_memory(Exits),"east, north, west",
+31,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east",
+31,Bathroom,write_memory(Notes),"The exploration is stuck in a loop between the Bathroom, Sweaty Canteen, and Washroom. The coin is not in the Super Hot Kitchenette. Need to explore alternative paths or revisit the kitchenette with a different approach.",
+32,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+32,Salon,write_memory(Current_Location),Salon,
+32,Salon,write_memory(Exits),"east, north, south, west",
+32,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north",
+33,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+33,Cozy Chamber,write_memory(Current_Location),Cozy Chamber,
+33,Cozy Chamber,write_memory(Exits),west,
+33,Cozy Chamber,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east",
+34,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+34,Salon,write_memory(Current_Location),Salon,
+34,Salon,write_memory(Exits),"east, north, south, west",
+34,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west",
+35,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+35,Workshop,write_memory(Current_Location),Workshop,
+35,Workshop,write_memory(Exits),"east, north, south, west",
+35,Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north",
+36,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+36,Playroom,write_memory(Current_Location),Playroom,
+36,Playroom,write_memory(Exits),"east, north, south, west",
+36,Playroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east",
+37,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+37,Austere Workshop,write_memory(Current_Location),Austere Workshop,
+37,Austere Workshop,write_memory(Exits),"east, north, south, west",
+37,Austere Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east",
+38,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+38,Silent Studio,write_memory(Current_Location),Silent Studio,
+38,Silent Studio,write_memory(Exits),"east, north, south, west",
+38,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east",
+39,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+39,Cellar,write_memory(Current_Location),Cellar,
+39,Cellar,write_memory(Exits),west,
+39,Cellar,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east",
+40,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+40,Silent Studio,write_memory(Current_Location),Silent Studio,
+40,Silent Studio,write_memory(Exits),"east, north, south, west",
+40,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west",
+40,Silent Studio,write_memory(Notes),The exploration is stuck in a loop between the Silent Studio and Cellar. The coin is not in the Super Hot Kitchenette. Need to explore alternative paths or revisit the kitchenette with a different approach.,
+41,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+41,Fun Recreation Zone,write_memory(Current_Location),Fun Recreation Zone,
+41,Fun Recreation Zone,write_memory(Exits),"east, north, south, west",
+41,Fun Recreation Zone,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south",
+42,Fun Recreation Zone,game_action(go east),"
+-= Super Hot Kitchenette =-
+You're now in a super hot kitchenette. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an unblocked exit to the west.
+
+",
+42,Super Hot Kitchenette,write_memory(Current_Location),Super Hot Kitchenette,
+42,Super Hot Kitchenette,write_memory(Exits),west,
+42,Super Hot Kitchenette,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east",
+43,Super Hot Kitchenette,game_action(take coin),"You can't see any such thing.
+",
+43,Super Hot Kitchenette,write_memory(Notes),The coin is not in the Super Hot Kitchenette. Need to backtrack and explore other paths.,
+44,Super Hot Kitchenette,game_action(go west),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+44,Fun Recreation Zone,write_memory(Current_Location),Fun Recreation Zone,
+44,Fun Recreation Zone,write_memory(Exits),"east, north, south, west",
+44,Fun Recreation Zone,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west",
+45,Fun Recreation Zone,game_action(go north),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+45,Silent Studio,write_memory(Current_Location),Silent Studio,
+45,Silent Studio,write_memory(Exits),"east, north, south, west",
+45,Silent Studio,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north",
+46,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+46,Austere Workshop,write_memory(Current_Location),Austere Workshop,
+46,Austere Workshop,write_memory(Exits),"east, north, south, west",
+46,Austere Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west",
+47,Austere Workshop,game_action(go west),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+47,Playroom,write_memory(Current_Location),Playroom,
+47,Playroom,write_memory(Exits),"east, north, south, west",
+47,Playroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west",
+48,Playroom,game_action(go west),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+48,Workshop,write_memory(Current_Location),Workshop,
+48,Workshop,write_memory(Exits),"east, north, south, west",
+48,Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west",
+49,Workshop,game_action(go south),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+49,Salon,write_memory(Current_Location),Salon,
+49,Salon,write_memory(Exits),"east, north, south, west",
+49,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south",
+50,Salon,game_action(go south),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+50,Bathroom,write_memory(Current_Location),Bathroom,
+50,Bathroom,write_memory(Exits),"east, north, west",
+50,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south",
+50,Bathroom,write_memory(Notes),"The exploration is stuck in a loop between the Bathroom, Salon, and Workshop. The coin is not in the Super Hot Kitchenette. Need to explore alternative paths or revisit the kitchenette with a different approach.",
+51,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+",
+51,Sweaty Canteen,write_memory(Current_Location),Sweaty Canteen,
+51,Sweaty Canteen,write_memory(Exits),west,
+51,Sweaty Canteen,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east",
+52,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+52,Bathroom,write_memory(Current_Location),Bathroom,
+52,Bathroom,write_memory(Exits),"east, north, west",
+52,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west",
+52,Bathroom,write_memory(Notes),The exploration is stuck in a loop between the Bathroom and Sweaty Canteen. The coin is not in the Super Hot Kitchenette. Need to explore alternative paths or revisit the kitchenette with a different approach.,
+53,Bathroom,game_action(go west),"
+-= Washroom =-
+You find yourself in a washroom. A typical one.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked.
+
+",
+53,Washroom,write_memory(Current_Location),Washroom,
+53,Washroom,write_memory(Exits),east,
+53,Washroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west",
+54,Washroom,game_action(go east),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+54,Bathroom,write_memory(Current_Location),Bathroom,
+54,Bathroom,write_memory(Exits),"east, north, west",
+54,Bathroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east",
+54,Bathroom,write_memory(Notes),The exploration is stuck in a loop between the Bathroom and Washroom. The coin is not in the Super Hot Kitchenette. Need to explore alternative paths or revisit the kitchenette with a different approach.,
+55,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+55,Salon,write_memory(Current_Location),Salon,
+55,Salon,write_memory(Exits),"east, north, south, west",
+55,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north",
+56,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+56,Cozy Chamber,write_memory(Current_Location),Cozy Chamber,
+56,Cozy Chamber,write_memory(Exits),west,
+56,Cozy Chamber,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east",
+57,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+57,Salon,write_memory(Current_Location),Salon,
+57,Salon,write_memory(Exits),"east, north, south, west",
+57,Salon,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west",
+58,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+58,Workshop,write_memory(Current_Location),Workshop,
+58,Workshop,write_memory(Exits),"east, north, south, west",
+58,Workshop,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north",
+59,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+59,Playroom,write_memory(Current_Location),Playroom,
+59,Playroom,write_memory(Exits),"east, north, south, west",
+59,Playroom,write_memory(Path_Taken),"east, west, north, east, west, south, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east, east, east, east, west, south, east, west, north, west, west, west, south, south, east, west, west, east, north, east, west, north, east",
+60,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",

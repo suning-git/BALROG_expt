@@ -150,6 +150,10 @@ class HistoryPromptBuilder:
                 else:
                     content = event["action"]
                 message = Message(role="assistant", content=content)
+
+            elif event["type"] == "tool":
+                content = event["tool_call"]
+                message = Message(role="tool", content=content)
             messages.append(message)
 
         return messages

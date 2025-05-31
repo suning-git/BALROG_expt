@@ -76,7 +76,7 @@ envs:
     score: True                 
     max_score: True             
     won: True                   
-    max_episode_steps: 80       
+    max_episode_steps: 200       
     textworld_games_path: tw_games  
   babaisai_kwargs: 
     add_ruleset: True

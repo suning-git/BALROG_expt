@@ -1,0 +1,523 @@
+Step,Room,Action,Result,Reasoning
+0,Bathroom,write_memory(Playbook),"1. Read current room description and detect possible exits and objects.
+2. Use 'go north' to navigate to the kitchen.
+3. Once in the kitchen, use 'take coin' to collect the coin.
+4. Use memory key 'CurrentRoom' to keep track of the current room.
+5. Use memory key 'CoinCollected' to track if the coin has been collected.
+6. If the coin is collected, complete the task.
+7. If not, continue exploring using the DFS algorithm.",
+0,Bathroom,write_memory(Notes),"I am currently in the Bathroom. There are exits to the north, east, and west. I need to go east first to reach the kitchen and then look for the coin.",
+1,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+",
+1,Sweaty Canteen,write_memory(Notes),I am currently in the Sweaty Canteen. There is an exit to the west. I need to go west to return to the Bathroom and continue exploring other exits to find the kitchen.,
+2,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+",
+2,Bathroom,write_memory(Notes),I am back in the Bathroom. I should go north to explore another path towards the kitchen.,
+3,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+3,Salon,write_memory(Notes),"I am currently in the Salon. There are exits to the east, north, south, and west. I need to explore these exits to find the kitchen and collect the coin. I will try going east next.",
+4,Salon,game_action(go east),"
+-= Cozy Chamber =-
+You are in a chamber. A cozy one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+",
+4,Cozy Chamber,write_memory(Notes),I am currently in the Cozy Chamber. There is an exit to the west. I need to go west to return to the Salon and continue exploring other exits to find the kitchen.,
+5,Cozy Chamber,game_action(go west),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+5,Salon,write_memory(Notes),I am back in the Salon. I should go north to explore another path towards the kitchen.,
+6,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+6,Workshop,write_memory(Notes),"I am currently in the Workshop. There are exits to the east, north, south, and west. I need to explore these exits to find the kitchen and collect the coin. I will try going east next.",
+7,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+7,Playroom,write_memory(Notes),"I am currently in the Playroom. There are exits to the east, north, south, and west. I need to continue exploring these exits to locate the kitchen and collect the coin. I will try going east next.",
+8,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+8,Austere Workshop,write_memory(Notes),"I am currently in the Austere Workshop. There are exits to the east, north, south, and west. I need to continue exploring these exits to locate the kitchen and collect the coin. I will try going north next.",
+9,Austere Workshop,game_action(go north),"
+-= Cramped Bathroom =-
+You arrive in a bathroom. A cramped kind of place.
+
+
+
+There is an exit to the south. Don't worry, it is unblocked.
+
+",
+9,Cramped Bathroom,write_memory(Notes),I am currently in the Cramped Bathroom. There is an exit to the south. I need to go south to return to the Austere Workshop and continue exploring other exits to find the kitchen.,
+10,Cramped Bathroom,game_action(go south),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+10,Austere Workshop,write_memory(Notes),I am back in the Austere Workshop. I should go west to explore another path towards the kitchen.,
+11,Austere Workshop,game_action(go west),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+11,Playroom,write_memory(Notes),"I am back in the Playroom. I should explore other exits, such as north or south, to continue my search for the kitchen.",
+12,Playroom,game_action(go north),"
+-= Fun Salon =-
+You are in a salon. A fun one.
+
+
+
+There is an unguarded exit to the south.
+
+",
+12,Fun Salon,write_memory(Notes),I am currently in the Fun Salon. There is an exit to the south. I need to go south to return to the Playroom and continue exploring other exits to find the kitchen.,
+13,Fun Salon,game_action(go south),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+13,Playroom,write_memory(Notes),I am back in the Playroom. I should try going south next to explore further and locate the kitchen.,
+14,Playroom,game_action(go south),"
+-= Laundry Place =-
+You've just walked into a laundry place. You decide to start listing off everything you see in the room, as if you were in a text adventure.
+
+
+
+You need an unblocked exit? You should try going north.
+
+",
+14,Laundry Place,write_memory(Notes),I am currently in the Laundry Place. There is an exit to the north. I need to go north to return to the Playroom and continue exploring other exits to find the kitchen.,
+15,Laundry Place,game_action(go north),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+15,Playroom,write_memory(Notes),I am back in the Playroom. I have explored most of the connected rooms but have not found the kitchen yet. I will now systematically explore all unvisited exits to ensure no path is missed.,
+16,Playroom,game_action(go north),"
+-= Fun Salon =-
+You are in a salon. A fun one.
+
+
+
+There is an unguarded exit to the south.
+
+",
+16,Fun Salon,write_memory(Notes),I am back in the Fun Salon. I need to explore other paths from the Playroom to locate the kitchen. I will return to the Playroom and try another exit.,
+17,Fun Salon,game_action(go south),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+17,Playroom,write_memory(Notes),"I am back in the Playroom. I will now explore the western exit systematically, as I have not yet fully explored this direction. This may lead me closer to the kitchen.",
+18,Playroom,game_action(go west),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+18,Workshop,write_memory(Notes),"I am back in the Workshop. I have explored this area before. I will go north to explore the unguarded exit, which may lead me to the kitchen or another connecting room that will help me progress.",
+19,Workshop,game_action(go north),"
+-= Silent Office =-
+I am honoured to announce that you are now in the silent office.
+
+
+
+There is an unblocked exit to the south.
+
+",
+19,Silent Office,write_memory(Notes),I am currently in the Silent Office. There is an exit to the south. I need to go south to return to the Workshop and continue exploring other exits to find the kitchen.,
+20,Silent Office,game_action(go south),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+20,Workshop,write_memory(Notes),"I am back in the Workshop. I will now try going west from here, as I have not yet fully explored this direction. This could lead to the kitchen or another connecting room.",
+21,Workshop,game_action(go west),"
+-= Lounge =-
+You are in a lounge. An ordinary one. You begin to take stock of what's here.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked.
+
+",
+21,Lounge,write_memory(Notes),I am currently in the Lounge. There is an exit to the east. I need to go east to return to the Workshop and continue exploring other exits to find the kitchen.,
+22,Lounge,game_action(go east),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+22,Workshop,write_memory(Notes),I am back in the Workshop. I have explored most of the surrounding rooms but have not yet found the kitchen. I will now return to the Salon and explore any unvisited exits from there to continue my search for the kitchen.,
+23,Workshop,game_action(go south),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+23,Salon,write_memory(Notes),"I am back in the Salon. I will now explore the western exit, as I have not yet fully explored this direction. This may lead me closer to the kitchen.",
+24,Salon,game_action(go west),"
+-= Kitchenette =-
+Of every kitchenette you could have shown up in, you had to show up in an usual one. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded.
+
+",
+24,Kitchenette,write_memory(Notes),"I am currently in the Kitchenette. This might be the kitchen where the coin is located. I need to check if the coin is here and, if so, collect it.",
+25,Kitchenette,game_action(take coin),"You can't see any such thing.
+",
+25,Kitchenette,write_memory(Notes),The coin is not present in the Kitchenette. I need to continue exploring other rooms. I will return to the Salon and try other exits.,
+26,Kitchenette,game_action(go east),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+",
+26,Salon,write_memory(Notes),"I am back in the Salon. I have explored most of the connected rooms but have not found the kitchen or the coin. I will now try exploring the northern exit again, as it may lead to a new area where the kitchen is located.",
+27,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+",
+27,Workshop,write_memory(Notes),"I am back in the Workshop. From here, I will systematically retrace my steps and explore any unvisited paths leading from the Playroom or other key junctions to locate the kitchen and the coin.",
+28,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+",
+28,Playroom,write_memory(Notes),"I am back in the Playroom. I will now explore the eastern exit, as I have not yet fully explored this path. This could lead me to the kitchen or another connecting room where the coin may be located.",
+29,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+29,Austere Workshop,write_memory(Notes),"I am in the Austere Workshop again. From here, I will explore the eastern exit, as it has not been fully explored yet. This could lead to the kitchen or another room where the coin may be located.",
+30,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+30,Silent Studio,write_memory(Notes),"I am currently in the Silent Studio. There are multiple exits available. I will explore the northern exit first, as it may lead to the kitchen or another connecting room where the coin may be located.",
+31,Silent Studio,game_action(go north),"
+-= Pantry =-
+You are in a pantry. An usual one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+",
+31,Pantry,write_memory(Notes),"I am currently in the Pantry. This might be the kitchen where the coin is located. I need to check if the coin is here and, if so, collect it.",
+32,Pantry,game_action(take coin),"You can't see any such thing.
+",
+32,Pantry,write_memory(Notes),The coin is not present in the Pantry. I need to continue exploring other rooms. I will return to the Silent Studio and try other exits.,
+33,Pantry,game_action(go south),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+33,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the eastern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+33,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the eastern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+34,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+34,Cellar,write_memory(Notes),"I am currently in the Cellar. This is likely not the kitchen, as it is underground. I will return to the Silent Studio and continue exploring other exits in search of the kitchen and the coin.",
+35,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+35,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the western exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+36,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+36,Austere Workshop,write_memory(Notes),I am back in the Austere Workshop. I will now retrace my steps systematically and explore any unvisited paths leading from the Playroom or other key junctions to locate the kitchen and the coin.,
+37,Austere Workshop,game_action(go south),"
+-= Sweaty Scullery =-
+You are in a scullery. A sweaty kind of place.
+
+
+
+There is an unguarded exit to the north.
+
+",
+37,Sweaty Scullery,write_memory(Notes),"I am currently in the Sweaty Scullery. This might be the kitchen where the coin is located. I need to check if the coin is here and, if so, collect it.",
+38,Sweaty Scullery,game_action(take coin),"You can't see any such thing.
+",
+38,Sweaty Scullery,write_memory(Notes),The coin is not present in the Sweaty Scullery. I need to continue exploring other rooms. I will return to the Austere Workshop and systematically explore any remaining unvisited exits in search of the kitchen and the coin.,
+39,Sweaty Scullery,game_action(go north),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+39,Austere Workshop,write_memory(Notes),I am back in the Austere Workshop. I will now systematically explore any remaining unvisited exits in search of the kitchen and the coin.,
+40,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+40,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the eastern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+41,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+41,Cellar,write_memory(Notes),"I am currently in the Cellar. This is likely not the kitchen, as it is underground. I will return to the Silent Studio and continue exploring other exits in search of the kitchen and the coin.",
+42,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+42,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the northern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+43,Silent Studio,game_action(go north),"
+-= Pantry =-
+You are in a pantry. An usual one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+",
+43,Pantry,write_memory(Notes),"I am currently in the Pantry. This might be the kitchen where the coin is located. I need to check if the coin is here and, if so, collect it.",
+44,Pantry,game_action(take coin),"You can't see any such thing.
+",
+44,Pantry,write_memory(Notes),The coin is not present in the Pantry. I need to continue exploring other rooms. I will return to the Silent Studio and try other exits.,
+45,Pantry,game_action(go south),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+45,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the eastern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+46,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+46,Cellar,write_memory(Notes),"I am currently in the Cellar. This is likely not the kitchen, as it is underground. I will return to the Silent Studio and continue exploring other exits in search of the kitchen and the coin.",
+47,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+47,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the western exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+48,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+48,Austere Workshop,write_memory(Notes),I am back in the Austere Workshop. I will now retrace my steps systematically and explore any unvisited paths leading from the Playroom or other key junctions to locate the kitchen and the coin.,
+49,Austere Workshop,game_action(go south),"
+-= Sweaty Scullery =-
+You are in a scullery. A sweaty kind of place.
+
+
+
+There is an unguarded exit to the north.
+
+",
+50,Sweaty Scullery,game_action(take coin),"You can't see any such thing.
+",
+50,Sweaty Scullery,write_memory(Notes),The coin is not present in the Sweaty Scullery. I need to continue exploring other rooms. I will return to the Austere Workshop and systematically explore any remaining unvisited exits in search of the kitchen and the coin.,
+51,Sweaty Scullery,game_action(go north),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",
+51,Austere Workshop,write_memory(Notes),I am back in the Austere Workshop. I will now systematically explore any remaining unvisited exits in search of the kitchen and the coin.,
+52,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+52,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the eastern exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+53,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+",
+53,Cellar,write_memory(Notes),"I am currently in the Cellar. This is likely not the kitchen, as it is underground. I will return to the Silent Studio and continue exploring other exits in search of the kitchen and the coin.",
+54,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+",
+54,Silent Studio,write_memory(Notes),"I am back in the Silent Studio. I will now explore the western exit, as it may lead to the kitchen or another connecting room where the coin may be located.",
+55,Silent Studio,game_action(go west),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+",

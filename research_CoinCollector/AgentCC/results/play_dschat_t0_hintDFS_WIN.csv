@@ -1,0 +1,1388 @@
+Step,Room,Action,Result,Reasoning
+0,Bathroom,write_memory(Playbook),"1. **Memory Keys and Usage:**
+   - 'Current_Location': Track the current room (e.g., 'Bathroom').
+   - 'Visited_Rooms': List of rooms already visited to avoid loops.
+   - 'Coins_Collected': Track the number of coins collected.
+   - 'Path': Record the path taken for backtracking if needed.
+
+2. **Strategy:**
+   - Use DFS to explore the maze.
+   - Always check for coins in the current room before moving.
+   - Prioritize unexplored directions (north, south, east, west) based on the current location.
+   - Avoid revisiting rooms unless necessary for backtracking.
+
+3. **Actions per Round:**
+   - Read 'Current_Location' and 'Visited_Rooms'.
+   - Check for coins in the observation.
+   - If a coin is present, 'take coin' and update 'Coins_Collected'.
+   - If no coin, choose an unexplored direction, update 'Path' and 'Visited_Rooms', and move.
+   - Write updates to memory after each action.",
+0,Bathroom,write_memory(Notes),"Initial observation: In the Bathroom. Exits: north, east, west. Goal: Find and take the coin in the kitchen.",
+0,Bathroom,read_memory(Playbook),"1. **Memory Keys and Usage:**
+   - 'Current_Location': Track the current room (e.g., 'Bathroom').
+   - 'Visited_Rooms': List of rooms already visited to avoid loops.
+   - 'Coins_Collected': Track the number of coins collected.
+   - 'Path': Record the path taken for backtracking if needed.
+
+2. **Strategy:**
+   - Use DFS to explore the maze.
+   - Always check for coins in the current room before moving.
+   - Prioritize unexplored directions (north, south, east, west) based on the current location.
+   - Avoid revisiting rooms unless necessary for backtracking.
+
+3. **Actions per Round:**
+   - Read 'Current_Location' and 'Visited_Rooms'.
+   - Check for coins in the observation.
+   - If a coin is present, 'take coin' and update 'Coins_Collected'.
+   - If no coin, choose an unexplored direction, update 'Path' and 'Visited_Rooms', and move.
+   - Write updates to memory after each action.","The playbook and initial notes have been successfully saved in memory. Here's the summary:
+
+### Playbook:
+1. **Memory Keys:**
+   - `Current_Location`: Track the current room.
+   - `Visited_Rooms`: List of visited rooms to avoid loops.
+   - `Coins_Collected`: Track collected coins.
+   - `Path`: Record the path for backtracking.
+
+2. **Strategy:**
+   - Use DFS to explore the maze.
+   - Check for coins in the current room before moving.
+   - Prioritize unexplored directions (north, south, east, west).
+   - Avoid revisiting rooms unless necessary.
+
+3. **Actions per Round:**
+   - Read `Current_Location` and `Visited_Rooms`.
+   - Check for coins in the observation.
+   - Take the coin if present; otherwise, move to an unexplored direction.
+   - Update memory after each action.
+
+### Notes:
+- Starting in the Bathroom with exits to the north, east, and west.
+- Goal: Find and take the coin in the kitchen.
+
+Next, I will proceed to explore the maze based on the playbook."
+1,Bathroom,game_action(go east),"
+-= Sweaty Canteen =-
+You're now in a sweaty canteen.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","The playbook is clear. I will now proceed with the following steps:
+
+1. **Initial Setup:**
+   - Current location: Bathroom.
+   - Exits: north, east, west.
+   - Goal: Find the kitchen and take the coin.
+
+2. **Next Steps:**
+   - Check for coins in the Bathroom (none mentioned).
+   - Choose an unexplored direction (east, as it was suggested as an unguarded exit).
+
+I will now move east to explore the next room."
+2,Sweaty Canteen,game_action(go west),"
+-= Bathroom =-
+You've entered a bathroom. I guess you better just go and list everything you see here.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Sweaty Canteen.
+- **Exits:** West (back to the Bathroom).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Sweaty Canteen"" to `Visited_Rooms`.
+   - Record the path taken (Bathroom → Sweaty Canteen).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bathroom to explore another direction (north or west).
+
+I will now move back west to the Bathroom."
+3,Bathroom,game_action(go north),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Bathroom (back to the starting point).
+- **Exits:** North, East, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bathroom"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Sweaty Canteen → Bathroom).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (since east leads to Sweaty Canteen, which has no further exits).
+
+I will now move north to explore the next room."
+4,Salon,game_action(go west),"
+-= Kitchenette =-
+Of every kitchenette you could have shown up in, you had to show up in an usual one. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Salon.
+- **Exits:** East, North, South (back to Bathroom), West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Salon"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon).
+
+2. **Action:**
+   - Explore the next unexplored direction: **west** (as it is unguarded and hasn't been explored yet).
+
+I will now move west to explore the next room."
+5,Kitchenette,game_action(go east),"
+-= Salon =-
+You've seen better salons, but at least this one seems pretty typical. You begin to take stock of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Kitchenette.
+- **Exits:** East (back to Salon).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Kitchenette"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Kitchenette).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Salon to explore another direction (north or east).
+
+I will now move east to return to the Salon."
+6,Salon,game_action(go north),"
+-= Workshop =-
+You are in a workshop. A standard kind of place. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. There is an unblocked exit to the south. You need an unblocked exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Salon (back to the previous room).
+- **Exits:** East, North, South (back to Bathroom), West (back to Kitchenette).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Salon"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Kitchenette → Salon).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (since east leads to an unblocked exit, which hasn't been explored yet).
+
+I will now move north to explore the next room."
+7,Workshop,game_action(go east),"
+-= Playroom =-
+You arrive in a playroom. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+There is an unguarded exit to the east. There is an exit to the north. Don't worry, it is unguarded. You need an unguarded exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Workshop.
+- **Exits:** East, North, South (back to Salon), West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Workshop"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+8,Playroom,game_action(go east),"
+-= Austere Workshop =-
+You've fallen into an austere room. Your mind races to think of what kind of room would be austere. And then it hits you. Of course. You're in the austere workshop.
+
+
+
+You need an unguarded exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unblocked. There is an unguarded exit to the west.
+
+","### Observation:
+- **Current Location:** Playroom.
+- **Exits:** East, North, South, West (back to Workshop).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Playroom"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+9,Austere Workshop,game_action(go east),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Austere Workshop.
+- **Exits:** East, North, South, West (back to Playroom).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Austere Workshop"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+10,Silent Studio,game_action(go east),"
+-= Cellar =-
+You find yourself in a cellar. An ordinary one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Silent Studio.
+- **Exits:** East, North, South, West (back to Austere Workshop).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Silent Studio"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+11,Cellar,game_action(go west),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Cellar.
+- **Exits:** West (back to Silent Studio).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Cellar"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Cellar).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Silent Studio to explore another direction (north or south).
+
+I will now move west to return to the Silent Studio."
+12,Silent Studio,game_action(go north),"
+-= Pantry =-
+You are in a pantry. An usual one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Silent Studio (back to the previous room).
+- **Exits:** East (back to Cellar), North, South, West (back to Austere Workshop).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Silent Studio"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Cellar → Silent Studio).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (as it is unblocked and hasn't been explored yet).
+
+I will now move north to explore the next room."
+13,Pantry,game_action(go south),"
+-= Silent Studio =-
+You find yourself in a studio. A silent one.
+
+
+
+You need an unguarded exit? You should try going east. There is an unblocked exit to the north. There is an exit to the south. Don't worry, it is unguarded. There is an exit to the west. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Pantry.
+- **Exits:** South (back to Silent Studio).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Pantry"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Pantry).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Silent Studio to explore another direction (south or west).
+
+I will now move south to return to the Silent Studio."
+14,Silent Studio,game_action(go south),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Silent Studio (back to the previous room).
+- **Exits:** East (back to Cellar), North (back to Pantry), South, West (back to Austere Workshop).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Silent Studio"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Pantry → Silent Studio).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+15,Fun Recreation Zone,game_action(go east),"
+-= Super Hot Kitchenette =-
+You're now in a super hot kitchenette. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Fun Recreation Zone.
+- **Exits:** East, North (back to Silent Studio), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Fun Recreation Zone"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+16,Super Hot Kitchenette,game_action(go west),"
+-= Fun Recreation Zone =-
+You arrive in a recreation zone. A fun kind of place.
+
+
+
+You need an unblocked exit? You should try going east. There is an unblocked exit to the north. There is an unguarded exit to the south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Super Hot Kitchenette.
+- **Exits:** West (back to Fun Recreation Zone).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Super Hot Kitchenette"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Super Hot Kitchenette).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Fun Recreation Zone to explore another direction (south or west).
+
+I will now move west to return to the Fun Recreation Zone."
+17,Fun Recreation Zone,game_action(go south),"
+-= Hot Kitchen =-
+You find yourself in a kitchen. A hot one. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. There is an exit to the north. Don't worry, it is unguarded. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Fun Recreation Zone (back to the previous room).
+- **Exits:** East (back to Super Hot Kitchenette), North (back to Silent Studio), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Fun Recreation Zone"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Super Hot Kitchenette → Fun Recreation Zone).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+18,Hot Kitchen,game_action(go east),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Hot Kitchen.
+- **Exits:** East, North (back to Fun Recreation Zone), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Hot Kitchen"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+19,Vault,game_action(go east),"
+-= Dish-Pit =-
+Well, here we are in a dish-pit. You begin looking for stuff.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Vault.
+- **Exits:** East, North, South, West (back to Hot Kitchen).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Vault"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+20,Dish-Pit,game_action(go west),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Dish-Pit.
+- **Exits:** West (back to Vault).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Dish-Pit"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Dish-Pit).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Vault to explore another direction (north or south).
+
+I will now move west to return to the Vault."
+21,Vault,game_action(go north),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty kind of place. The room is well lit.
+
+
+
+You don't like doors? Why not try going south, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Vault (back to the previous room).
+- **Exits:** East (back to Dish-Pit), North, South, West (back to Hot Kitchen).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Vault"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Dish-Pit → Vault).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (as it is unblocked and hasn't been explored yet).
+
+I will now move north to explore the next room."
+22,Sweaty Cookery,game_action(go south),"
+-= Vault =-
+I am honoured to announce that you are now in the vault. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Sweaty Cookery.
+- **Exits:** South (back to Vault).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Sweaty Cookery"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Sweaty Cookery).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Vault to explore another direction (south or west).
+
+I will now move south to return to the Vault."
+23,Vault,game_action(go south),"
+-= Cubicle =-
+You are in a cubicle. A normal kind of place. Let's see what's in here.
+
+
+
+You need an unguarded exit? You should try going east. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Vault (back to the previous room).
+- **Exits:** East (back to Dish-Pit), North (back to Sweaty Cookery), South, West (back to Hot Kitchen).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Vault"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Sweaty Cookery → Vault).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unblocked and hasn't been explored yet).
+
+I will now move south to explore the next room."
+24,Cubicle,game_action(go east),"
+-= Absurdly Hot Scullery =-
+You're now in an absurdly hot scullery.
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Cubicle.
+- **Exits:** East, North (back to Vault), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Cubicle"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+25,Absurdly Hot Scullery,game_action(go west),"
+-= Cubicle =-
+You are in a cubicle. A normal kind of place. Let's see what's in here.
+
+
+
+You need an unguarded exit? You should try going east. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Absurdly Hot Scullery.
+- **Exits:** West (back to Cubicle).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Absurdly Hot Scullery"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Absurdly Hot Scullery).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Cubicle to explore another direction (south or west).
+
+I will now move west to return to the Cubicle."
+26,Cubicle,game_action(go south),"
+-= Bedroom =-
+You arrive in a bedroom. An usual one.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Cubicle (back to the previous room).
+- **Exits:** East (back to Absurdly Hot Scullery), North (back to Vault), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Cubicle"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Absurdly Hot Scullery → Cubicle).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+27,Bedroom,game_action(go east),"
+-= Steamy Scullery =-
+You find yourself in a scullery. A steamy kind of place.
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Bedroom.
+- **Exits:** East, North (back to Cubicle), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Bedroom"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+28,Steamy Scullery,game_action(go west),"
+-= Bedroom =-
+You arrive in a bedroom. An usual one.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Steamy Scullery.
+- **Exits:** West (back to Bedroom).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Steamy Scullery"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Steamy Scullery).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bedroom to explore another direction (south or west).
+
+I will now move west to return to the Bedroom."
+29,Bedroom,game_action(go south),"
+-= Launderette =-
+Well, here we are in the launderette.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unblocked. There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Bedroom (back to the previous room).
+- **Exits:** East (back to Steamy Scullery), North (back to Cubicle), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bedroom"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Steamy Scullery → Bedroom).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+30,Launderette,game_action(go east),"
+-= Hot Cookhouse =-
+Of every cookhouse you could have sauntered into, you had to show up in a hot one.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Launderette.
+- **Exits:** East, North (back to Bedroom), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Launderette"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+31,Hot Cookhouse,game_action(go west),"
+-= Launderette =-
+Well, here we are in the launderette.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unblocked. There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Hot Cookhouse.
+- **Exits:** West (back to Launderette).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Hot Cookhouse"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Hot Cookhouse).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Launderette to explore another direction (south or west).
+
+I will now move west to return to the Launderette."
+32,Launderette,game_action(go south),"
+-= Laundromat =-
+You find yourself in a laundromat. An usual kind of place. You start to take note of what's in the room.
+
+
+
+You need an unblocked exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Launderette (back to the previous room).
+- **Exits:** East (back to Hot Cookhouse), North (back to Bedroom), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Launderette"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Hot Cookhouse → Launderette).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unblocked and hasn't been explored yet).
+
+I will now move south to explore the next room."
+33,Laundromat,game_action(go east),"
+-= Garage =-
+Ah, the garage. This is some kind of garage, really great typical vibes in this place, a wonderful typical atmosphere. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Laundromat.
+- **Exits:** East, North (back to Launderette), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Laundromat"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+34,Garage,game_action(go west),"
+-= Laundromat =-
+You find yourself in a laundromat. An usual kind of place. You start to take note of what's in the room.
+
+
+
+You need an unblocked exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Garage.
+- **Exits:** West (back to Laundromat).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Garage"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Garage).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Laundromat to explore another direction (south or west).
+
+I will now move west to return to the Laundromat."
+35,Laundromat,game_action(go south),"
+-= Chamber =-
+You arrive in a chamber. An usual one.
+
+
+
+You need an unblocked exit? You should try going east. You need an unguarded exit? You should try going north. You need an unguarded exit? You should try going south. There is an unguarded exit to the west.
+
+","### Observation:
+- **Current Location:** Laundromat (back to the previous room).
+- **Exits:** East (back to Garage), North (back to Launderette), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Laundromat"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Garage → Laundromat).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unblocked and hasn't been explored yet).
+
+I will now move south to explore the next room."
+36,Chamber,game_action(go east),"
+-= Study =-
+You've just shown up in a study.
+
+
+
+You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Chamber.
+- **Exits:** East, North (back to Laundromat), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Chamber"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+37,Study,game_action(go west),"
+-= Chamber =-
+You arrive in a chamber. An usual one.
+
+
+
+You need an unblocked exit? You should try going east. You need an unguarded exit? You should try going north. You need an unguarded exit? You should try going south. There is an unguarded exit to the west.
+
+","### Observation:
+- **Current Location:** Study.
+- **Exits:** West (back to Chamber).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Study"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Study).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Chamber to explore another direction (south or west).
+
+I will now move west to return to the Chamber."
+38,Chamber,game_action(go south),"
+-= Bedchamber =-
+You arrive in a bedchamber. A normal one.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. There is an exit to the north. Don't worry, it is unguarded. You need an unblocked exit? You should try going south. There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Chamber (back to the previous room).
+- **Exits:** East (back to Study), North (back to Laundromat), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Chamber"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Study → Chamber).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+39,Bedchamber,game_action(go east),"
+-= Shower =-
+You arrive in a shower. An usual kind of place.
+
+
+
+You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Bedchamber.
+- **Exits:** East, North (back to Chamber), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Bedchamber"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+40,Shower,game_action(go west),"
+-= Bedchamber =-
+You arrive in a bedchamber. A normal one.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. There is an exit to the north. Don't worry, it is unguarded. You need an unblocked exit? You should try going south. There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Shower.
+- **Exits:** West (back to Bedchamber).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Shower"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Shower).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bedchamber to explore another direction (south or west).
+
+I will now move west to return to the Bedchamber."
+41,Bedchamber,game_action(go south),"
+-= Sleepy Bedchamber =-
+You arrive in a bedchamber. A sleepy one.
+
+
+
+You don't like doors? Why not try going north, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Bedchamber (back to the previous room).
+- **Exits:** East (back to Shower), North (back to Chamber), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bedchamber"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Shower → Bedchamber).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unblocked and hasn't been explored yet).
+
+I will now move south to explore the next room."
+42,Sleepy Bedchamber,game_action(go north),"
+-= Bedchamber =-
+You arrive in a bedchamber. A normal one.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. There is an exit to the north. Don't worry, it is unguarded. You need an unblocked exit? You should try going south. There is an unblocked exit to the west.
+
+","### Observation:
+- **Current Location:** Sleepy Bedchamber.
+- **Exits:** North (back to Bedchamber).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Sleepy Bedchamber"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Sleepy Bedchamber).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bedchamber to explore another direction (west).
+
+I will now move north to return to the Bedchamber."
+43,Bedchamber,game_action(go west),"
+-= Scullery =-
+You're now in a scullery.
+
+
+
+You need an unguarded exit? You should try going east. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unblocked exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Bedchamber (back to the previous room).
+- **Exits:** East (back to Shower), North (back to Chamber), South (back to Sleepy Bedchamber), West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bedchamber"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Sleepy Bedchamber → Bedchamber).
+
+2. **Action:**
+   - Explore the next unexplored direction: **west** (as it is unblocked and hasn't been explored yet).
+
+I will now move west to explore the next room."
+44,Scullery,game_action(go north),"
+-= Steamy Shower =-
+You've entered a steamy shower. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+You need an unguarded exit? You should try going south.
+
+","### Observation:
+- **Current Location:** Scullery.
+- **Exits:** East (back to Bedchamber), North, South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Scullery"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (as it is unguarded and hasn't been explored yet).
+
+I will now move north to explore the next room."
+45,Steamy Shower,game_action(go south),"
+-= Scullery =-
+You're now in a scullery.
+
+
+
+You need an unguarded exit? You should try going east. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unblocked exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Steamy Shower.
+- **Exits:** South (back to Scullery).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Steamy Shower"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Steamy Shower).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Scullery to explore another direction (south or west).
+
+I will now move south to return to the Scullery."
+46,Scullery,game_action(go south),"
+-= Parlor =-
+You've entered a parlor.
+
+
+
+There is an unblocked exit to the east. You need an unguarded exit? You should try going north. There is an exit to the south. Don't worry, it is unblocked. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Scullery (back to the previous room).
+- **Exits:** East (back to Bedchamber), North (back to Steamy Shower), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Scullery"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Steamy Shower → Scullery).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+47,Parlor,game_action(go east),"
+-= Silent Cubicle =-
+You find yourself in a cubicle. A silent one.
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+","### Observation:
+- **Current Location:** Parlor.
+- **Exits:** East, North (back to Scullery), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Parlor"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unblocked and hasn't been explored yet).
+
+I will now move east to explore the next room."
+48,Silent Cubicle,game_action(go west),"
+-= Parlor =-
+You've entered a parlor.
+
+
+
+There is an unblocked exit to the east. You need an unguarded exit? You should try going north. There is an exit to the south. Don't worry, it is unblocked. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Silent Cubicle.
+- **Exits:** West (back to Parlor).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Silent Cubicle"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Silent Cubicle).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Parlor to explore another direction (south or west).
+
+I will now move west to return to the Parlor."
+49,Parlor,game_action(go south),"
+-= Hot Kitchenette =-
+You're now in a hot kitchenette.
+
+
+
+There is an exit to the north. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Parlor (back to the previous room).
+- **Exits:** East (back to Silent Cubicle), North (back to Scullery), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Parlor"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Silent Cubicle → Parlor).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unblocked and hasn't been explored yet).
+
+I will now move south to explore the next room."
+50,Hot Kitchenette,game_action(go north),"
+-= Parlor =-
+You've entered a parlor.
+
+
+
+There is an unblocked exit to the east. You need an unguarded exit? You should try going north. There is an exit to the south. Don't worry, it is unblocked. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Hot Kitchenette.
+- **Exits:** North (back to Parlor).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Hot Kitchenette"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Hot Kitchenette).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Parlor to explore another direction (west).
+
+I will now move north to return to the Parlor."
+51,Parlor,game_action(go west),"
+-= Steam Room =-
+You've just sauntered into a steam room. You start to take note of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","### Observation:
+- **Current Location:** Parlor (back to the previous room).
+- **Exits:** East (back to Silent Cubicle), North (back to Scullery), South (back to Hot Kitchenette), West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Parlor"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Hot Kitchenette → Parlor).
+
+2. **Action:**
+   - Explore the next unexplored direction: **west** (as it is unguarded and hasn't been explored yet).
+
+I will now move west to explore the next room."
+52,Steam Room,game_action(go north),"
+-= Silent Workshop =-
+You are in a silent workshop.
+
+
+
+There is an exit to the south. Don't worry, it is unblocked.
+
+","### Observation:
+- **Current Location:** Steam Room.
+- **Exits:** East (back to Parlor), North, South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Steam Room"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room).
+
+2. **Action:**
+   - Explore the next unexplored direction: **north** (as it is unblocked and hasn't been explored yet).
+
+I will now move north to explore the next room."
+53,Silent Workshop,game_action(go south),"
+-= Steam Room =-
+You've just sauntered into a steam room. You start to take note of what's in the room.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","### Observation:
+- **Current Location:** Silent Workshop.
+- **Exits:** South (back to Steam Room).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Silent Workshop"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Silent Workshop).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Steam Room to explore another direction (south or west).
+
+I will now move south to return to the Steam Room."
+54,Steam Room,game_action(go south),"
+-= Bar =-
+You are in a bar. A standard one. You begin to take stock of what's in the room.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Steam Room (back to the previous room).
+- **Exits:** East (back to Parlor), North (back to Silent Workshop), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Steam Room"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Silent Workshop → Steam Room).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+55,Bar,game_action(go east),"
+-= Austere Study =-
+If you're wondering why everything seems so austere all of a sudden, it's because you've just sauntered into the austere study.
+
+
+
+You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","### Observation:
+- **Current Location:** Bar.
+- **Exits:** East, North (back to Steam Room), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Bar"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar).
+
+2. **Action:**
+   - Explore the next unexplored direction: **east** (as it is unguarded and hasn't been explored yet).
+
+I will now move east to explore the next room."
+56,Austere Study,game_action(go west),"
+-= Bar =-
+You are in a bar. A standard one. You begin to take stock of what's in the room.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Austere Study.
+- **Exits:** West (back to Bar).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Austere Study"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar → Austere Study).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bar to explore another direction (south or west).
+
+I will now move west to return to the Bar."
+57,Bar,game_action(go south),"
+-= Closet =-
+You're now in the closet.
+
+
+
+You don't like doors? Why not try going north, that entranceway is unblocked.
+
+","### Observation:
+- **Current Location:** Bar (back to the previous room).
+- **Exits:** East (back to Austere Study), North (back to Steam Room), South, West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bar"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar → Austere Study → Bar).
+
+2. **Action:**
+   - Explore the next unexplored direction: **south** (as it is unguarded and hasn't been explored yet).
+
+I will now move south to explore the next room."
+58,Closet,game_action(go north),"
+-= Bar =-
+You are in a bar. A standard one. You begin to take stock of what's in the room.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","### Observation:
+- **Current Location:** Closet.
+- **Exits:** North (back to Bar).
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Closet"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar → Closet).
+
+2. **Action:**
+   - Since there are no coins here and no other exits, backtrack to the Bar to explore another direction (west).
+
+I will now move north to return to the Bar."
+59,Bar,game_action(go west),"
+-= Kitchen =-
+You find yourself in a kitchen. An ordinary kind of place. The room is well lit.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unblocked exit? You should try going north. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+There is a coin on the floor.
+
+","### Observation:
+- **Current Location:** Bar (back to the previous room).
+- **Exits:** East (back to Austere Study), North (back to Steam Room), South (back to Closet), West.
+- **No coins mentioned in this room.**
+
+### Next Steps:
+1. **Update Memory:**
+   - Ensure ""Bar"" is in `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar → Closet → Bar).
+
+2. **Action:**
+   - Explore the next unexplored direction: **west** (as it is unguarded and hasn't been explored yet).
+
+I will now move west to explore the next room."
+60,Kitchen,game_action(take coin),"You pick up the coin from the ground.
+
+
+
+Your score has just gone up by one point.
+
+
+                               *** The End ***
+
+You scored 1 out of a possible 1, in 61 turns.
+
+
+Would you like to RESTART, RESTORE a saved game, QUIT or UNDO the last command?
+> ","### Observation:
+- **Current Location:** Kitchen.
+- **Exits:** East (back to Bar), North, West.
+- **Coin:** There is a coin on the floor.
+
+### Next Steps:
+1. **Update Memory:**
+   - Add ""Kitchen"" to `Visited_Rooms`.
+   - Record the path (Bathroom → Salon → Workshop → Playroom → Austere Workshop → Silent Studio → Fun Recreation Zone → Hot Kitchen → Vault → Cubicle → Bedroom → Launderette → Laundromat → Chamber → Bedchamber → Scullery → Parlor → Steam Room → Bar → Kitchen).
+
+2. **Action:**
+   - Since there is a coin in this room, I will take it.
+
+I will now take the coin."

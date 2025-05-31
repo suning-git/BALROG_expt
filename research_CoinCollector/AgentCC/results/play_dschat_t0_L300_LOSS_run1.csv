@@ -1,0 +1,2745 @@
+Step,Room,Action,Result,Reasoning
+1,Cellar,game_action(go east),"
+-= Ugly Garage =-
+You arrive in a garage. An ugly one.
+
+
+
+You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""?"", S:""?"", W:""?""}},
+}
+PATH = [""Cellar""]
+
+NOTES:
+- C1: Currently in ""Cellar"". Available exits: east, south, west. Came from nowhere (starting room).
+- C2: MAP and PATH are correctly initialized. No reciprocal links yet as this is the first room.
+- C3: No missing information. All exits are marked as ""?"" except for invalid ones.
+- C4: Following DFS strategy. First unexplored exit is east.
+</scratch-pad>
+```"
+2,Ugly Garage,game_action(go west),"
+-= Cellar =-
+Look at you, bigshot, walking into a cellar like it isn't some huge deal.
+
+
+
+There is an unguarded exit to the east. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""?"", W:""?""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+}
+PATH = [""Cellar"", ""Ugly Garage""]
+
+NOTES:
+- C1: Currently in ""Ugly Garage"". Available exit: west. Came from ""Cellar"" via east.
+- C2: Updated MAP with reciprocal links: ""Cellar"" east leads to ""Ugly Garage"", and ""Ugly Garage"" west leads back to ""Cellar"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Ugly Garage"", so backtrack to ""Cellar"".
+</scratch-pad>
+```"
+3,Cellar,game_action(go south),"
+-= Cramped Laundry Place =-
+You arrive in a cramped laundry place.
+
+
+
+You don't like doors? Why not try going north, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""?"", W:""?""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+}
+PATH = [""Cellar""]
+
+NOTES:
+- C1: Currently in ""Cellar"". Available exits: east, south, west. Came from ""Ugly Garage"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
+4,Cramped Laundry Place,game_action(go north),"
+-= Cellar =-
+Look at you, bigshot, walking into a cellar like it isn't some huge deal.
+
+
+
+There is an unguarded exit to the east. You don't like doors? Why not try going south, that entranceway is unguarded. There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""?""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Cramped Laundry Place""]
+
+NOTES:
+- C1: Currently in ""Cramped Laundry Place"". Available exit: north. Came from ""Cellar"" via south.
+- C2: Updated MAP with reciprocal links: ""Cellar"" south leads to ""Cramped Laundry Place"", and ""Cramped Laundry Place"" north leads back to ""Cellar"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Cramped Laundry Place"", so backtrack to ""Cellar"".
+</scratch-pad>
+```"
+5,Cellar,game_action(go west),"
+-= Shower =-
+You are in a shower. An ordinary kind of place. I guess you better just go and list everything you see here.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. There is an exit to the north. Don't worry, it is unblocked. You need an unguarded exit? You should try going south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""?""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar""]
+
+NOTES:
+- C1: Currently in ""Cellar"". Available exits: east, south, west. Came from ""Cramped Laundry Place"" via north.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is west.
+</scratch-pad>
+```"
+6,Shower,game_action(go north),"
+-= Austere Studio =-
+You're now in the austere studio. I guess you better just go and list everything you see here.
+
+
+
+You need an unblocked exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an unblocked exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""?"", E:""Cellar"", S:""?"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower""]
+
+NOTES:
+- C1: Currently in ""Shower"". Available exits: east, north, south, west. Came from ""Cellar"" via west.
+- C2: Updated MAP with reciprocal links: ""Cellar"" west leads to ""Shower"", and ""Shower"" east leads back to ""Cellar"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+7,Austere Studio,game_action(go east),"
+-= Bedroom =-
+You are in a bedroom. An ordinary one. Let's see what's in here.
+
+
+
+You need an unguarded exit? You should try going east. You need an unblocked exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unblocked. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""?"", S:""Shower"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio""]
+
+NOTES:
+- C1: Currently in ""Austere Studio"". Available exits: east, north, south, west. Came from ""Shower"" via north.
+- C2: Updated MAP with reciprocal links: ""Shower"" north leads to ""Austere Studio"", and ""Austere Studio"" south leads back to ""Shower"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+8,Bedroom,game_action(go east),"
+-= Bar =-
+You find yourself in a bar. A normal kind of place. You begin to take stock of what's in the room.
+
+
+
+You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""?"", E:""?"", S:""?"", W:""Austere Studio""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom""]
+
+NOTES:
+- C1: Currently in ""Bedroom"". Available exits: east, north, south, west. Came from ""Austere Studio"" via east.
+- C2: Updated MAP with reciprocal links: ""Austere Studio"" east leads to ""Bedroom"", and ""Bedroom"" west leads back to ""Austere Studio"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+9,Bar,game_action(go west),"
+-= Bedroom =-
+You are in a bedroom. An ordinary one. Let's see what's in here.
+
+
+
+You need an unguarded exit? You should try going east. You need an unblocked exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unblocked. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""?"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Bar""]
+
+NOTES:
+- C1: Currently in ""Bar"". Available exit: west. Came from ""Bedroom"" via east.
+- C2: Updated MAP with reciprocal links: ""Bedroom"" east leads to ""Bar"", and ""Bar"" west leads back to ""Bedroom"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Bar"", so backtrack to ""Bedroom"".
+</scratch-pad>
+```"
+10,Bedroom,game_action(go north),"
+-= Silent Office 10 =-
+You've just walked into a silent office 10.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You don't like doors? Why not try going north, that entranceway is unblocked. There is an unguarded exit to the south. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""?"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom""]
+
+NOTES:
+- C1: Currently in ""Bedroom"". Available exits: east, north, south, west. Came from ""Bar"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+11,Silent Office 10,game_action(go east),"
+-= Forgotten Garage =-
+You find yourself in a garage. A forgotten one. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an unblocked exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""?"", S:""Bedroom"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10""]
+
+NOTES:
+- C1: Currently in ""Silent Office 10"". Available exits: east, north, south, west. Came from ""Bedroom"" via north.
+- C2: Updated MAP with reciprocal links: ""Bedroom"" north leads to ""Silent Office 10"", and ""Silent Office 10"" south leads back to ""Bedroom"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+12,Forgotten Garage,game_action(go east),"
+-= Entertaining Parlor =-
+You are in an entertaining kind of place. That is to say, you're in a parlor.
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""?"", E:""?"", S:""?"", W:""Silent Office 10""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage""]
+
+NOTES:
+- C1: Currently in ""Forgotten Garage"". Available exits: east, north, south, west. Came from ""Silent Office 10"" via east.
+- C2: Updated MAP with reciprocal links: ""Silent Office 10"" east leads to ""Forgotten Garage"", and ""Forgotten Garage"" west leads back to ""Silent Office 10"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+13,Entertaining Parlor,game_action(go west),"
+-= Forgotten Garage =-
+You find yourself in a garage. A forgotten one. You decide to just list off a complete list of everything you see in the room, because hey, why not?
+
+
+
+There is an unblocked exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""?"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Entertaining Parlor""]
+
+NOTES:
+- C1: Currently in ""Entertaining Parlor"". Available exit: west. Came from ""Forgotten Garage"" via east.
+- C2: Updated MAP with reciprocal links: ""Forgotten Garage"" east leads to ""Entertaining Parlor"", and ""Entertaining Parlor"" west leads back to ""Forgotten Garage"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Entertaining Parlor"", so backtrack to ""Forgotten Garage"".
+</scratch-pad>
+```"
+14,Forgotten Garage,game_action(go north),"
+-= Clean Restroom =-
+Of every restroom you could have shown up in, you had to walk into a clean one. You can barely contain your excitement.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. There is an exit to the north. Don't worry, it is unguarded. There is an unblocked exit to the south. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""?"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage""]
+
+NOTES:
+- C1: Currently in ""Forgotten Garage"". Available exits: east, north, south, west. Came from ""Entertaining Parlor"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+15,Clean Restroom,game_action(go east),"
+-= Hot Canteen =-
+You arrive in a hot kind of place. That is to say, you're in a canteen.
+
+
+
+You need an unblocked exit? You should try going east. There is an exit to the north. Don't worry, it is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""?"", S:""Forgotten Garage"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom""]
+
+NOTES:
+- C1: Currently in ""Clean Restroom"". Available exits: east, north, south, west. Came from ""Forgotten Garage"" via north.
+- C2: Updated MAP with reciprocal links: ""Forgotten Garage"" north leads to ""Clean Restroom"", and ""Clean Restroom"" south leads back to ""Forgotten Garage"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+16,Hot Canteen,game_action(go east),"
+-= Absurdly Hot Dish-Pit =-
+You're now in the absurdly hot dish-pit.
+
+
+
+There is an unblocked exit to the east. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""?"", S:""?"", W:""Clean Restroom""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen""]
+
+NOTES:
+- C1: Currently in ""Hot Canteen"". Available exits: east, north, south, west. Came from ""Clean Restroom"" via east.
+- C2: Updated MAP with reciprocal links: ""Clean Restroom"" east leads to ""Hot Canteen"", and ""Hot Canteen"" west leads back to ""Clean Restroom"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+17,Absurdly Hot Dish-Pit,game_action(go east),"
+-= Studio =-
+You've just shown up in a studio.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. There is an exit to the north. Don't worry, it is unblocked. There is an unblocked exit to the south. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""?"", S:""?"", W:""Hot Canteen""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit""]
+
+NOTES:
+- C1: Currently in ""Absurdly Hot Dish-Pit"". Available exits: east, north, south, west. Came from ""Hot Canteen"" via east.
+- C2: Updated MAP with reciprocal links: ""Hot Canteen"" east leads to ""Absurdly Hot Dish-Pit"", and ""Absurdly Hot Dish-Pit"" west leads back to ""Hot Canteen"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+18,Studio,game_action(go east),"
+-= Laundromat =-
+You are in a laundromat. A normal kind of place. You begin to take stock of what's in the room.
+
+
+
+You need an unblocked exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unguarded. There is an unblocked exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""?"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio""]
+
+NOTES:
+- C1: Currently in ""Studio"". Available exits: east, north, south, west. Came from ""Absurdly Hot Dish-Pit"" via east.
+- C2: Updated MAP with reciprocal links: ""Absurdly Hot Dish-Pit"" east leads to ""Studio"", and ""Studio"" west leads back to ""Absurdly Hot Dish-Pit"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+19,Laundromat,game_action(go east),"
+-= Kitchen =-
+You find yourself in a kitchen. A normal one. The room seems oddly familiar, as though it were only superficially different from the other rooms in the building.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You need an unguarded exit? You should try going north. You need an unblocked exit? You should try going south. There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""?"", S:""?"", W:""Studio""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat""]
+
+NOTES:
+- C1: Currently in ""Laundromat"". Available exits: east, north, south, west. Came from ""Studio"" via east.
+- C2: Updated MAP with reciprocal links: ""Studio"" east leads to ""Laundromat"", and ""Laundromat"" west leads back to ""Studio"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+20,Kitchen,game_action(go east),"
+-= Cubicle =-
+You are in a cubicle.
+
+
+
+You need an unblocked exit? You should try going east. There is an unguarded exit to the north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""?"", E:""?"", S:""?"", W:""Laundromat""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen""]
+
+NOTES:
+- C1: Currently in ""Kitchen"". Available exits: east, north, south, west. Came from ""Laundromat"" via east.
+- C2: Updated MAP with reciprocal links: ""Laundromat"" east leads to ""Kitchen"", and ""Kitchen"" west leads back to ""Laundromat"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+21,Cubicle,game_action(go east),"
+-= Workshop =-
+You are in a workshop. A typical one.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""?"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""?"", E:""?"", S:""?"", W:""Kitchen""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle""]
+
+NOTES:
+- C1: Currently in ""Cubicle"". Available exits: east, north, south, west. Came from ""Kitchen"" via east.
+- C2: Updated MAP with reciprocal links: ""Kitchen"" east leads to ""Cubicle"", and ""Cubicle"" west leads back to ""Kitchen"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+22,Workshop,game_action(go west),"
+-= Cubicle =-
+You are in a cubicle.
+
+
+
+You need an unblocked exit? You should try going east. There is an unguarded exit to the north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""?"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""?"", E:""Workshop"", S:""?"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Workshop""]
+
+NOTES:
+- C1: Currently in ""Workshop"". Available exit: west. Came from ""Cubicle"" via east.
+- C2: Updated MAP with reciprocal links: ""Cubicle"" east leads to ""Workshop"", and ""Workshop"" west leads back to ""Cubicle"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Workshop"", so backtrack to ""Cubicle"".
+</scratch-pad>
+```"
+23,Cubicle,game_action(go north),"
+-= Unreasonably Hot Cookery =-
+This might come as a shock to you, but you've just moved into an unreasonably hot cookery.
+
+
+
+You don't like doors? Why not try going south, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""?"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""?"", E:""Workshop"", S:""?"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle""]
+
+NOTES:
+- C1: Currently in ""Cubicle"". Available exits: east, north, south, west. Came from ""Workshop"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+24,Unreasonably Hot Cookery,game_action(go south),"
+-= Cubicle =-
+You are in a cubicle.
+
+
+
+You need an unblocked exit? You should try going east. There is an unguarded exit to the north. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""?"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Unreasonably Hot Cookery""]
+
+NOTES:
+- C1: Currently in ""Unreasonably Hot Cookery"". Available exit: south. Came from ""Cubicle"" via north.
+- C2: Updated MAP with reciprocal links: ""Cubicle"" north leads to ""Unreasonably Hot Cookery"", and ""Unreasonably Hot Cookery"" south leads back to ""Cubicle"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Unreasonably Hot Cookery"", so backtrack to ""Cubicle"".
+</scratch-pad>
+```"
+25,Cubicle,game_action(go south),"
+-= Serious Studio =-
+You've entered a serious studio.
+
+
+
+There is an unblocked exit to the east. You don't like doors? Why not try going north, that entranceway is unguarded. You need an unguarded exit? You should try going south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""?"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle""]
+
+NOTES:
+- C1: Currently in ""Cubicle"". Available exits: east, north, south, west. Came from ""Unreasonably Hot Cookery"" via south.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
+26,Serious Studio,game_action(go east),"
+-= Recreation Zone =-
+Okay, so you're in a recreation zone, cool, but is it typical? You better believe it is. The room is well lit.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unguarded. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""?"", S:""?"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio""]
+
+NOTES:
+- C1: Currently in ""Serious Studio"". Available exits: east, north, south, west. Came from ""Cubicle"" via south.
+- C2: Updated MAP with reciprocal links: ""Cubicle"" south leads to ""Serious Studio"", and ""Serious Studio"" north leads back to ""Cubicle"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+27,Recreation Zone,game_action(go east),"
+-= Serious Cubicle =-
+You are in a cubicle. It seems to be pretty serious here. You can barely contain your excitement.
+
+
+
+There is an unblocked exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""?"", E:""?"", S:""?"", W:""Serious Studio""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone""]
+
+NOTES:
+- C1: Currently in ""Recreation Zone"". Available exits: east, north, south, west. Came from ""Serious Studio"" via east.
+- C2: Updated MAP with reciprocal links: ""Serious Studio"" east leads to ""Recreation Zone"", and ""Recreation Zone"" west leads back to ""Serious Studio"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+28,Serious Cubicle,game_action(go west),"
+-= Recreation Zone =-
+Okay, so you're in a recreation zone, cool, but is it typical? You better believe it is. The room is well lit.
+
+
+
+There is an unblocked exit to the east. There is an exit to the north. Don't worry, it is unguarded. There is an unguarded exit to the south. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""?"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Serious Cubicle""]
+
+NOTES:
+- C1: Currently in ""Serious Cubicle"". Available exit: west. Came from ""Recreation Zone"" via east.
+- C2: Updated MAP with reciprocal links: ""Recreation Zone"" east leads to ""Serious Cubicle"", and ""Serious Cubicle"" west leads back to ""Recreation Zone"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Serious Cubicle"", so backtrack to ""Recreation Zone"".
+</scratch-pad>
+```"
+29,Recreation Zone,game_action(go north),"
+-= Washroom =-
+You are in a washroom. A typical kind of place. You begin looking for stuff.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You need an unguarded exit? You should try going north. You don't like doors? Why not try going south, that entranceway is unblocked. There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""?"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone""]
+
+NOTES:
+- C1: Currently in ""Recreation Zone"". Available exits: east, north, south, west. Came from ""Serious Cubicle"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+30,Washroom,game_action(go east),"
+-= Parlor =-
+You arrive in a parlor. A normal kind of place.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. There is an exit to the north. Don't worry, it is unguarded. You need an unblocked exit? You should try going south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""?"", S:""Recreation Zone"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom""]
+
+NOTES:
+- C1: Currently in ""Washroom"". Available exits: east, north, south, west. Came from ""Recreation Zone"" via north.
+- C2: Updated MAP with reciprocal links: ""Recreation Zone"" north leads to ""Washroom"", and ""Washroom"" south leads back to ""Recreation Zone"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+31,Parlor,game_action(go east),"
+-= Sweaty Kitchen =-
+Well, here we are in a sweaty kitchen. You begin looking for stuff.
+
+
+
+You don't like doors? Why not try going east, that entranceway is unguarded. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unblocked. You don't like doors? Why not try going west, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""?"", S:""?"", W:""Washroom""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor""]
+
+NOTES:
+- C1: Currently in ""Parlor"". Available exits: east, north, south, west. Came from ""Washroom"" via east.
+- C2: Updated MAP with reciprocal links: ""Washroom"" east leads to ""Parlor"", and ""Parlor"" west leads back to ""Washroom"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+32,Sweaty Kitchen,game_action(go east),"
+-= Garage =-
+You are in a garage. A standard one. You begin to take stock of what's in the room.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. You need an unguarded exit? You should try going south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""?"", S:""?"", W:""Parlor""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen""]
+
+NOTES:
+- C1: Currently in ""Sweaty Kitchen"". Available exits: east, north, south, west. Came from ""Parlor"" via east.
+- C2: Updated MAP with reciprocal links: ""Parlor"" east leads to ""Sweaty Kitchen"", and ""Sweaty Kitchen"" west leads back to ""Parlor"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+33,Garage,game_action(go east),"
+-= Clean Bathroom =-
+Ah, the bathroom. This is some kind of bathroom, really great clean vibes in this place, a wonderful clean atmosphere. You begin looking for stuff.
+
+
+
+There is an exit to the west. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""?"", E:""?"", S:""?"", W:""Sweaty Kitchen""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage""]
+
+NOTES:
+- C1: Currently in ""Garage"". Available exits: east, north, south, west. Came from ""Sweaty Kitchen"" via east.
+- C2: Updated MAP with reciprocal links: ""Sweaty Kitchen"" east leads to ""Garage"", and ""Garage"" west leads back to ""Sweaty Kitchen"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+34,Clean Bathroom,game_action(go west),"
+-= Garage =-
+You are in a garage. A standard one. You begin to take stock of what's in the room.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. You need an unguarded exit? You should try going south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""?"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Clean Bathroom""]
+
+NOTES:
+- C1: Currently in ""Clean Bathroom"". Available exit: west. Came from ""Garage"" via east.
+- C2: Updated MAP with reciprocal links: ""Garage"" east leads to ""Clean Bathroom"", and ""Clean Bathroom"" west leads back to ""Garage"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Clean Bathroom"", so backtrack to ""Garage"".
+</scratch-pad>
+```"
+35,Garage,game_action(go north),"
+-= Cookery =-
+You've just sauntered into a cookery.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""?"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage""]
+
+NOTES:
+- C1: Currently in ""Garage"". Available exits: east, north, south, west. Came from ""Clean Bathroom"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+36,Cookery,game_action(go east),"
+-= Office =-
+You've entered an office.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""?"", E:""?"", S:""Garage"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery""]
+
+NOTES:
+- C1: Currently in ""Cookery"". Available exits: east, north, south, west. Came from ""Garage"" via north.
+- C2: Updated MAP with reciprocal links: ""Garage"" north leads to ""Cookery"", and ""Cookery"" south leads back to ""Garage"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+37,Office,game_action(go west),"
+-= Cookery =-
+You've just sauntered into a cookery.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""?"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Office""]
+
+NOTES:
+- C1: Currently in ""Office"". Available exit: west. Came from ""Cookery"" via east.
+- C2: Updated MAP with reciprocal links: ""Cookery"" east leads to ""Office"", and ""Office"" west leads back to ""Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Office"", so backtrack to ""Cookery"".
+</scratch-pad>
+```"
+38,Cookery,game_action(go north),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty one. The room seems oddly familiar, as though it were only superficially different from the other rooms in the building.
+
+
+
+There is an unguarded exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""?"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery""]
+
+NOTES:
+- C1: Currently in ""Cookery"". Available exits: east, north, south, west. Came from ""Office"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+39,Sweaty Cookery,game_action(go east),"
+-= Still Cubicle =-
+Well, here we are in a still cubicle.
+
+
+
+You need an unguarded exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You need an unblocked exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""?"", S:""Cookery"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery""]
+
+NOTES:
+- C1: Currently in ""Sweaty Cookery"". Available exits: east, north, south, west. Came from ""Cookery"" via north.
+- C2: Updated MAP with reciprocal links: ""Cookery"" north leads to ""Sweaty Cookery"", and ""Sweaty Cookery"" south leads back to ""Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+40,Still Cubicle,game_action(go east),"
+-= Serious Workshop =-
+You are in a workshop. A serious one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""?"", S:""?"", W:""Sweaty Cookery""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle""]
+
+NOTES:
+- C1: Currently in ""Still Cubicle"". Available exits: east, north, south, west. Came from ""Sweaty Cookery"" via east.
+- C2: Updated MAP with reciprocal links: ""Sweaty Cookery"" east leads to ""Still Cubicle"", and ""Still Cubicle"" west leads back to ""Sweaty Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+41,Serious Workshop,game_action(go east),"
+-= Study =-
+You find yourself in a study. Let's see what's in here.
+
+
+
+You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""?"", E:""?"", S:""?"", W:""Still Cubicle""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop""]
+
+NOTES:
+- C1: Currently in ""Serious Workshop"". Available exits: east, north, south, west. Came from ""Still Cubicle"" via east.
+- C2: Updated MAP with reciprocal links: ""Still Cubicle"" east leads to ""Serious Workshop"", and ""Serious Workshop"" west leads back to ""Still Cubicle"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+42,Study,game_action(go west),"
+-= Serious Workshop =-
+You are in a workshop. A serious one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""?"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Study""]
+
+NOTES:
+- C1: Currently in ""Study"". Available exit: west. Came from ""Serious Workshop"" via east.
+- C2: Updated MAP with reciprocal links: ""Serious Workshop"" east leads to ""Study"", and ""Study"" west leads back to ""Serious Workshop"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Study"", so backtrack to ""Serious Workshop"".
+</scratch-pad>
+```"
+43,Serious Workshop,game_action(go north),"
+-= Laundry Place =-
+You arrive in a laundry place. A typical one.
+
+
+
+You need an unguarded exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""?"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop""]
+
+NOTES:
+- C1: Currently in ""Serious Workshop"". Available exits: east, north, south, west. Came from ""Study"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+44,Laundry Place,game_action(go east),"
+-= Basement =-
+You've entered a basement. The room is well lit.
+
+
+
+There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""?"", E:""?"", S:""Serious Workshop"", W:""?""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Laundry Place""]
+
+NOTES:
+- C1: Currently in ""Laundry Place"". Available exits: east, north, south, west. Came from ""Serious Workshop"" via north.
+- C2: Updated MAP with reciprocal links: ""Serious Workshop"" north leads to ""Laundry Place"", and ""Laundry Place"" south leads back to ""Serious Workshop"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+45,Basement,game_action(go west),"
+-= Laundry Place =-
+You arrive in a laundry place. A typical one.
+
+
+
+You need an unguarded exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""?"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Laundry Place"", ""Basement""]
+
+NOTES:
+- C1: Currently in ""Basement"". Available exit: west. Came from ""Laundry Place"" via east.
+- C2: Updated MAP with reciprocal links: ""Laundry Place"" east leads to ""Basement"", and ""Basement"" west leads back to ""Laundry Place"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Basement"", so backtrack to ""Laundry Place"".
+</scratch-pad>
+```"
+46,Laundry Place,game_action(go north),"
+-= Marbled Shower 38 =-
+You've entered a marbled shower 38.
+
+
+
+There is an unblocked exit to the south.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""?"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Laundry Place""]
+
+NOTES:
+- C1: Currently in ""Laundry Place"". Available exits: east, north, south, west. Came from ""Basement"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+47,Marbled Shower 38,game_action(go south),"
+-= Laundry Place =-
+You arrive in a laundry place. A typical one.
+
+
+
+You need an unguarded exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You don't like doors? Why not try going south, that entranceway is unguarded. You need an unguarded exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Laundry Place"", ""Marbled Shower 38""]
+
+NOTES:
+- C1: Currently in ""Marbled Shower 38"". Available exit: south. Came from ""Laundry Place"" via north.
+- C2: Updated MAP with reciprocal links: ""Laundry Place"" north leads to ""Marbled Shower 38"", and ""Marbled Shower 38"" south leads back to ""Laundry Place"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Marbled Shower 38"", so backtrack to ""Laundry Place"".
+</scratch-pad>
+```"
+48,Laundry Place,game_action(go south),"
+-= Serious Workshop =-
+You are in a workshop. A serious one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Laundry Place""]
+
+NOTES:
+- C1: Currently in ""Laundry Place"". Available exits: east, north, south, west. Came from ""Marbled Shower 38"" via south.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
+49,Serious Workshop,game_action(go south),"
+-= Cramped Washroom 37 =-
+You've just shown up in a cramped washroom 37. You decide to start listing off everything you see in the room, as if you were in a text adventure.
+
+
+
+You don't like doors? Why not try going north, that entranceway is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""?"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop""]
+
+NOTES:
+- C1: Currently in ""Serious Workshop"". Available exits: east, north, south, west. Came from ""Laundry Place"" via south.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
+50,Cramped Washroom 37,game_action(go north),"
+-= Serious Workshop =-
+You are in a workshop. A serious one. You try to gain information on your surroundings by using a technique you call ""looking.""
+
+
+
+You don't like doors? Why not try going east, that entranceway is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. There is an exit to the south. Don't worry, it is unguarded. There is an unguarded exit to the west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop"", ""Cramped Washroom 37""]
+
+NOTES:
+- C1: Currently in ""Cramped Washroom 37"". Available exit: north. Came from ""Serious Workshop"" via south.
+- C2: Updated MAP with reciprocal links: ""Serious Workshop"" south leads to ""Cramped Washroom 37"", and ""Cramped Washroom 37"" north leads back to ""Serious Workshop"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Cramped Washroom 37"", so backtrack to ""Serious Workshop"".
+</scratch-pad>
+```"
+51,Serious Workshop,game_action(go west),"
+-= Still Cubicle =-
+Well, here we are in a still cubicle.
+
+
+
+You need an unguarded exit? You should try going east. You don't like doors? Why not try going north, that entranceway is unblocked. You need an unblocked exit? You should try going south. You don't like doors? Why not try going west, that entranceway is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle"", ""Serious Workshop""]
+
+NOTES:
+- C1: Currently in ""Serious Workshop"". Available exits: east, north, south, west. Came from ""Cramped Washroom 37"" via north.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is west.
+</scratch-pad>
+```"
+52,Still Cubicle,game_action(go west),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty one. The room seems oddly familiar, as though it were only superficially different from the other rooms in the building.
+
+
+
+There is an unguarded exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Still Cubicle""]
+
+NOTES:
+- C1: Currently in ""Still Cubicle"". Available exits: east, north, south, west. Came from ""Serious Workshop"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is west.
+</scratch-pad>
+```"
+53,Sweaty Cookery,game_action(go west),"
+-= Roomy Attic =-
+You're now in a roomy attic.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""?""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery""]
+
+NOTES:
+- C1: Currently in ""Sweaty Cookery"". Available exits: east, north, south, west. Came from ""Still Cubicle"" via west.
+- C2: Updated MAP with reciprocal links: ""Still Cubicle"" west leads to ""Sweaty Cookery"", and ""Sweaty Cookery"" east leads back to ""Still Cubicle"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is west.
+</scratch-pad>
+```"
+54,Roomy Attic,game_action(go east),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty one. The room seems oddly familiar, as though it were only superficially different from the other rooms in the building.
+
+
+
+There is an unguarded exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Roomy Attic""]
+
+NOTES:
+- C1: Currently in ""Roomy Attic"". Available exit: east. Came from ""Sweaty Cookery"" via west.
+- C2: Updated MAP with reciprocal links: ""Sweaty Cookery"" west leads to ""Roomy Attic"", and ""Roomy Attic"" east leads back to ""Sweaty Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Roomy Attic"", so backtrack to ""Sweaty Cookery"".
+</scratch-pad>
+```"
+55,Sweaty Cookery,game_action(go north),"
+-= Steamy Steam Room 36 =-
+You've just sauntered into a steamy steam room 36. Okay, just remember what you're here to do, and everything will go great.
+
+
+
+There is an exit to the south. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""?"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery""]
+
+NOTES:
+- C1: Currently in ""Sweaty Cookery"". Available exits: east, north, south, west. Came from ""Roomy Attic"" via east.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is north.
+</scratch-pad>
+```"
+56,Steamy Steam Room 36,game_action(go south),"
+-= Sweaty Cookery =-
+You find yourself in a cookery. A sweaty one. The room seems oddly familiar, as though it were only superficially different from the other rooms in the building.
+
+
+
+There is an unguarded exit to the east. You need an unguarded exit? You should try going north. There is an unguarded exit to the south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery"", ""Steamy Steam Room 36""]
+
+NOTES:
+- C1: Currently in ""Steamy Steam Room 36"". Available exit: south. Came from ""Sweaty Cookery"" via north.
+- C2: Updated MAP with reciprocal links: ""Sweaty Cookery"" north leads to ""Steamy Steam Room 36"", and ""Steamy Steam Room 36"" south leads back to ""Sweaty Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Steamy Steam Room 36"", so backtrack to ""Sweaty Cookery"".
+</scratch-pad>
+```"
+57,Sweaty Cookery,game_action(go south),"
+-= Cookery =-
+You've just sauntered into a cookery.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Sweaty Cookery""]
+
+NOTES:
+- C1: Currently in ""Sweaty Cookery"". Available exits: east, north, south, west. Came from ""Steamy Steam Room 36"" via south.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
+58,Cookery,game_action(go east),"
+-= Office =-
+You've entered an office.
+
+
+
+There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery""]
+
+NOTES:
+- C1: Currently in ""Cookery"". Available exits: east, north, south, west. Came from ""Sweaty Cookery"" via south.
+- C2: Updated MAP with reciprocal links: ""Sweaty Cookery"" south leads to ""Cookery"", and ""Cookery"" north leads back to ""Sweaty Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is east.
+</scratch-pad>
+```"
+59,Office,game_action(go west),"
+-= Cookery =-
+You've just sauntered into a cookery.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Office""]
+
+NOTES:
+- C1: Currently in ""Office"". Available exit: west. Came from ""Cookery"" via east.
+- C2: Updated MAP with reciprocal links: ""Cookery"" east leads to ""Office"", and ""Office"" west leads back to ""Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Office"", so backtrack to ""Cookery"".
+</scratch-pad>
+```"
+60,Cookery,game_action(go west),"
+-= Balmy Cookhouse =-
+You arrive in a cookhouse. A balmy kind of place. You decide to start listing off everything you see in the room, as if you were in a text adventure.
+
+
+
+You need an unblocked exit? You should try going east.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""?""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery""]
+
+NOTES:
+- C1: Currently in ""Cookery"". Available exits: east, north, south, west. Came from ""Office"" via west.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is west.
+</scratch-pad>
+```"
+61,Balmy Cookhouse,game_action(go east),"
+-= Cookery =-
+You've just sauntered into a cookery.
+
+
+
+There is an exit to the east. Don't worry, it is unguarded. You don't like doors? Why not try going north, that entranceway is unguarded. There is an unblocked exit to the south. There is an exit to the west. Don't worry, it is unblocked.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""Balmy Cookhouse""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+    ""Balmy Cookhouse"": {exits:{N:Invalid, E:""Cookery"", S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery"", ""Balmy Cookhouse""]
+
+NOTES:
+- C1: Currently in ""Balmy Cookhouse"". Available exit: east. Came from ""Cookery"" via west.
+- C2: Updated MAP with reciprocal links: ""Cookery"" west leads to ""Balmy Cookhouse"", and ""Balmy Cookhouse"" east leads back to ""Cookery"".
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. No unexplored exits in ""Balmy Cookhouse"", so backtrack to ""Cookery"".
+</scratch-pad>
+```"
+62,Cookery,game_action(go south),"
+-= Garage =-
+You are in a garage. A standard one. You begin to take stock of what's in the room.
+
+
+
+There is an exit to the east. Don't worry, it is unblocked. You don't like doors? Why not try going north, that entranceway is unblocked. You need an unguarded exit? You should try going south. You need an unblocked exit? You should try going west.
+
+","```
+<scratch-pad>
+MAP = {
+    ""Cellar"": {exits:{N:Invalid, E:""Ugly Garage"", S:""Cramped Laundry Place"", W:""Shower""}},
+    ""Ugly Garage"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cellar""}},
+    ""Cramped Laundry Place"": {exits:{N:""Cellar"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Shower"": {exits:{N:""Austere Studio"", E:""Cellar"", S:""?"", W:""?""}},
+    ""Austere Studio"": {exits:{N:""?"", E:""Bedroom"", S:""Shower"", W:""?""}},
+    ""Bedroom"": {exits:{N:""Silent Office 10"", E:""Bar"", S:""?"", W:""Austere Studio""}},
+    ""Bar"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Bedroom""}},
+    ""Silent Office 10"": {exits:{N:""?"", E:""Forgotten Garage"", S:""Bedroom"", W:""?""}},
+    ""Forgotten Garage"": {exits:{N:""Clean Restroom"", E:""Entertaining Parlor"", S:""?"", W:""Silent Office 10""}},
+    ""Entertaining Parlor"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Forgotten Garage""}},
+    ""Clean Restroom"": {exits:{N:""?"", E:""Hot Canteen"", S:""Forgotten Garage"", W:""?""}},
+    ""Hot Canteen"": {exits:{N:""?"", E:""Absurdly Hot Dish-Pit"", S:""?"", W:""Clean Restroom""}},
+    ""Absurdly Hot Dish-Pit"": {exits:{N:""?"", E:""Studio"", S:""?"", W:""Hot Canteen""}},
+    ""Studio"": {exits:{N:""?"", E:""Laundromat"", S:""?"", W:""Absurdly Hot Dish-Pit""}},
+    ""Laundromat"": {exits:{N:""?"", E:""Kitchen"", S:""?"", W:""Studio""}},
+    ""Kitchen"": {exits:{N:""Unreasonably Hot Cookery"", E:""Cubicle"", S:""?"", W:""Laundromat""}},
+    ""Cubicle"": {exits:{N:""Unreasonably Hot Cookery"", E:""Workshop"", S:""Serious Studio"", W:""Kitchen""}},
+    ""Workshop"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cubicle""}},
+    ""Unreasonably Hot Cookery"": {exits:{N:Invalid, E:Invalid, S:""Cubicle"", W:Invalid}},
+    ""Serious Studio"": {exits:{N:""Cubicle"", E:""Recreation Zone"", S:""?"", W:""?""}},
+    ""Recreation Zone"": {exits:{N:""Washroom"", E:""Serious Cubicle"", S:""?"", W:""Serious Studio""}},
+    ""Serious Cubicle"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Recreation Zone""}},
+    ""Washroom"": {exits:{N:""?"", E:""Parlor"", S:""Recreation Zone"", W:""?""}},
+    ""Parlor"": {exits:{N:""?"", E:""Sweaty Kitchen"", S:""?"", W:""Washroom""}},
+    ""Sweaty Kitchen"": {exits:{N:""?"", E:""Garage"", S:""?"", W:""Parlor""}},
+    ""Garage"": {exits:{N:""Cookery"", E:""Clean Bathroom"", S:""?"", W:""Sweaty Kitchen""}},
+    ""Clean Bathroom"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Garage""}},
+    ""Cookery"": {exits:{N:""Sweaty Cookery"", E:""Office"", S:""Garage"", W:""Balmy Cookhouse""}},
+    ""Office"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Cookery""}},
+    ""Sweaty Cookery"": {exits:{N:""Steamy Steam Room 36"", E:""Still Cubicle"", S:""Cookery"", W:""Roomy Attic""}},
+    ""Still Cubicle"": {exits:{N:""?"", E:""Serious Workshop"", S:""?"", W:""Sweaty Cookery""}},
+    ""Serious Workshop"": {exits:{N:""Laundry Place"", E:""Study"", S:""Cramped Washroom 37"", W:""Still Cubicle""}},
+    ""Study"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Serious Workshop""}},
+    ""Laundry Place"": {exits:{N:""Marbled Shower 38"", E:""Basement"", S:""Serious Workshop"", W:""?""}},
+    ""Basement"": {exits:{N:Invalid, E:Invalid, S:Invalid, W:""Laundry Place""}},
+    ""Marbled Shower 38"": {exits:{N:Invalid, E:Invalid, S:""Laundry Place"", W:Invalid}},
+    ""Cramped Washroom 37"": {exits:{N:""Serious Workshop"", E:Invalid, S:Invalid, W:Invalid}},
+    ""Roomy Attic"": {exits:{N:Invalid, E:""Sweaty Cookery"", S:Invalid, W:Invalid}},
+    ""Steamy Steam Room 36"": {exits:{N:Invalid, E:Invalid, S:""Sweaty Cookery"", W:Invalid}},
+    ""Balmy Cookhouse"": {exits:{N:Invalid, E:""Cookery"", S:Invalid, W:Invalid}},
+}
+PATH = [""Cellar"", ""Shower"", ""Austere Studio"", ""Bedroom"", ""Silent Office 10"", ""Forgotten Garage"", ""Clean Restroom"", ""Hot Canteen"", ""Absurdly Hot Dish-Pit"", ""Studio"", ""Laundromat"", ""Kitchen"", ""Cubicle"", ""Serious Studio"", ""Recreation Zone"", ""Washroom"", ""Parlor"", ""Sweaty Kitchen"", ""Garage"", ""Cookery""]
+
+NOTES:
+- C1: Currently in ""Cookery"". Available exits: east, north, south, west. Came from ""Balmy Cookhouse"" via east.
+- C2: MAP and PATH are correctly updated. Reciprocal links are intact.
+- C3: No missing information. All exits are correctly marked.
+- C4: Following DFS strategy. Next unexplored exit is south.
+</scratch-pad>
+```"
